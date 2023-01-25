@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "prometheus-ngenix-exporter.labels" . | nindent 4 }}
+  name: prometheus-ngenix-exporter
+  namespace: {{ .Values.namespace }}
+spec:
+  progressDeadlineSeconds: 600
+  replicas:  1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      {{- include "prometheus-ngenix-exporter.selectorLabels" . | nindent 6 }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        {{- include "prometheus-ngenix-exporter.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - env:
+        - name: USER_LOGIN
+          value: {{ .Values.global.user_login }}
+        - name: USER_TOKEN
+          value: {{ .Values.global.user_token }}
+        - name: CONFIG_IDS
+          value: {{ .Values.config_ids | squote }}
+        image: registry.sirius.online/cheops-edu/ngenix-client/prometheus-ngenix-exporter:{{ .Values.global.tag }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        name: {{ .Chart.Name }}
+        lifecycle:
+          preStop:
+            httpGet:
+              path: /stop
+              port: 11020
+        ports:
+        - containerPort: 11020
+          protocol: TCP
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+

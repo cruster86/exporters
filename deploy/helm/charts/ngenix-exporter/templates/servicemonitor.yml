@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    name: prometheus-ngenix-exporter
+    release: {{ .Values.servicemonitor.release }}
+  name: prometheus-ngenix-exporter
+  namespace: {{ .Values.servicemonitor.namespace }}
+spec:
+  endpoints:
+    - honorLabels: true
+      interval: 60s
+      path: /_metrics
+      port: health
+  namespaceSelector:
+    any: true
+  selector:
+    matchLabels:
+      name: prometheus-ngenix-exporter

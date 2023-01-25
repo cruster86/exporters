@@ -1,0 +1,8 @@
+namespace: cattle-monitoring-system
+
+config_ids: "[72171]"
+
+servicemonitor:
+  namespace: cattle-monitoring-system
+  release: rancher-monitoring
+

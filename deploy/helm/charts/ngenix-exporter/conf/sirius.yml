@@ -1,0 +1,4 @@
+servicemonitor:
+  namespace: cattle-prometheus
+  release: rancher-monitoring
+

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "elasticsearch-exporter.fullname" . }}
+  name: {{ template "elasticsearch-exporter.name" . }}
   labels:
     chart: {{ template "elasticsearch-exporter.chart" . }}
     app: {{ template "elasticsearch-exporter.name" . }}
@@ -39,7 +39,7 @@ spec:
       {{- end }}
     spec:
       {{- if .Values.serviceAccount.create  }}
-      serviceAccountName: {{ template "elasticsearch-exporter.fullname" . }}
+      serviceAccountName: {{ template "elasticsearch-exporter.name" . }}
       {{- else }}
       serviceAccountName: {{ .Values.serviceAccount.name }}
       {{- end }}
@@ -184,7 +184,7 @@ spec:
         {{- if and .Values.es.ssl.enabled (eq .Values.es.ssl.useExistingSecrets false) }}
         - name: ssl
           secret:
-            secretName: {{ template "elasticsearch-exporter.fullname" . }}-cert
+            secretName: {{ template "elasticsearch-exporter.name" . }}-cert
         {{- end }}
         {{- range .Values.secretMounts }}
         - name: {{ .name }}

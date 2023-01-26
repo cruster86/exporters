@@ -8,7 +8,6 @@ metadata:
   namespace: {{ .Values.prometheusRule.namespace }}
 {{- end }}
   labels:
-    chart: {{ template "prometheus-elasticsearch-exporter.chart" . }}
     app: {{ template "prometheus-elasticsearch-exporter.name" . }}
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"

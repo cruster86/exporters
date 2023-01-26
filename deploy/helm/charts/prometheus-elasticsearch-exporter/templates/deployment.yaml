@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: {{ template "prometheus-elasticsearch-exporter.name" . }}
   labels:
-    chart: {{ template "prometheus-elasticsearch-exporter.chart" . }}
     app: {{ template "prometheus-elasticsearch-exporter.name" . }}
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"

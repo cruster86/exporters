@@ -12,5 +12,5 @@ rules:
   resources: ['podsecuritypolicies']
   verbs:     ['use']
   resourceNames:
-  - {{ template "prometheus-.name" . }}
+  - {{ template "prometheus-elasticsearch-exporter.name" . }}
 {{- end }}

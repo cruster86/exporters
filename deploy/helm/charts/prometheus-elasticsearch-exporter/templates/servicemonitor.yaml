@@ -35,7 +35,7 @@ spec:
   jobLabel: {{ default .Release.Name .Values.serviceMonitor.jobLabel }}
   selector:
     matchLabels:
-      app: {{ template "prometheus-.name" . }}
+      app: {{ template "prometheus-elasticsearch-exporter.name" . }}
       release: "{{ .Release.Name }}"
   namespaceSelector:
     matchNames:

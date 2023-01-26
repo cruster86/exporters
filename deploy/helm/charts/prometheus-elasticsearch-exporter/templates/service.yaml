@@ -20,5 +20,5 @@ spec:
       port: {{ .Values.service.httpPort }}
       protocol: TCP
   selector:
-    app: {{ template "prometheus-.name" . }}
+    app: {{ template "prometheus-elasticsearch-exporter.name" . }}
     release: "{{ .Release.Name }}"

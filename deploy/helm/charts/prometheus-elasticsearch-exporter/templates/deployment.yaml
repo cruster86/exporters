@@ -45,7 +45,7 @@ spec:
 {{- if .Values.priorityClassName }}
       priorityClassName: "{{ .Values.priorityClassName }}"
 {{- end }}
-      {{- include "prometheus-.image.pullSecret.name" (dict "images" (list .Values.image) "context" $) | nindent 6 }}
+      {{- include "prometheus-elasticsearch-exporter.image.pullSecret.name" (dict "images" (list .Values.image) "context" $) | nindent 6 }}
       restartPolicy: {{ .Values.restartPolicy }}
       {{- with .Values.podSecurityContext }}
       securityContext:

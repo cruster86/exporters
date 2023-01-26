@@ -45,6 +45,12 @@ spec:
 {{- if .Values.priorityClassName }}
       priorityClassName: "{{ .Values.priorityClassName }}"
 {{- end }}
+      {{- if .Values.image.pullSecret }}
+      imagePullSecrets:
+      {{- range .Values.image.pullSecret }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
       restartPolicy: {{ .Values.restartPolicy }}
       {{- with .Values.podSecurityContext }}
       securityContext:

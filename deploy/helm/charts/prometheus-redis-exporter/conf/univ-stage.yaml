@@ -1,0 +1,54 @@
+affinity: {}
+annotations: {}
+auth:
+  enabled: false
+  redisPassword: ''
+  redisUser: ''
+  secret:
+    key: ''
+    name: ''
+customLabels: {}
+env: {}
+extraArgs: {}
+image:
+  pullPolicy: IfNotPresent
+  repository: oliver006/redis_exporter
+  tag: v1.11.1
+labels: {}
+nodeSelector:
+  node-role: db-stage
+prometheusRule:
+  additionalLabels: {}
+  enabled: false
+  namespace: ''
+  rules: null
+rbac:
+  create: true
+  pspEnabled: true
+redisAddress: 'redis://redis-stage-redis-ha:6379'
+redisAddressConfig:
+  configmap:
+    key: ''
+    name: ''
+  enabled: false
+replicaCount: 1
+resources: {}
+securityContext: {}
+service:
+  annotations: {}
+  labels: {}
+  port: 9121
+  portName: redis-exporter
+  type: ClusterIP
+serviceAccount:
+  create: true
+  name: null
+serviceMonitor:
+  enabled: true
+  lables:
+    release: rancher-monitoring
+tolerations:
+  - key: node-role
+    operator: Equal
+    value: db-stage
+

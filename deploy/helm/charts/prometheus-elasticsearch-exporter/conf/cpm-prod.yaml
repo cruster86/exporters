@@ -30,11 +30,11 @@ extraVolumeMounts: []
 extraVolumes: []
 global:
   imagePullSecrets: []
-image:
-  pullPolicy: IfNotPresent
-  pullSecret: ''
-  repository: quay.io/prometheuscommunity/elasticsearch-exporter
-  tag: v1.5.0
+#image:
+#  pullPolicy: IfNotPresent
+#  pullSecret: ''
+#  repository: quay.io/prometheuscommunity/elasticsearch-exporter
+#  tag: v1.5.0
 log:
   format: logfmt
   level: info

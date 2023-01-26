@@ -17,7 +17,7 @@ stages:
     - chmod +x ./scripts/helm_deploy_and_wait.sh
     - RELEASE_NAME="${RELEASE_NAME}"
       NAMESPACE="prometheus-exporters"
-      CHART="deploy/helm"
+      CHART="deploy/helm/charts/${RELEASE_NAME}"
       HELM_ARGS="
       -f deploy/helm/charts/${RELEASE_NAME}/conf/${CLUSTER_NAME}.yaml
       --set global.yc_secret="${YC_REGISTRY}"

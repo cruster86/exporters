@@ -1,0 +1,97 @@
+affinity: {}
+deployment:
+  annotations: {}
+dnsConfig: {}
+env: {}
+envFromSecret: ''
+es:
+  all: true
+  cluster_settings: false
+  indices: true
+  indices_mappings: true
+  indices_settings: true
+  shards: true
+  snapshots: true
+  ssl:
+    ca:
+      path: /ssl/ca.pem
+    client:
+      enabled: true
+      keyPath: /ssl/client.key
+      pemPath: /ssl/client.pem
+    enabled: false
+    useExistingSecrets: false
+  sslSkipVerify: false
+  timeout: 60s
+  uri: 'http://elasticsearch-master:9200'
+extraArgs: []
+extraEnvSecrets: {}
+extraVolumeMounts: []
+extraVolumes: []
+global:
+  imagePullSecrets: []
+image:
+  pullPolicy: IfNotPresent
+  pullSecret: ''
+  repository: quay.io/prometheuscommunity/elasticsearch-exporter
+  tag: v1.5.0
+log:
+  format: logfmt
+  level: info
+nodeSelector:
+  node-role: monitoring
+podAnnotations: {}
+podLabels: {}
+podSecurityPolicies:
+  enabled: false
+priorityClassName: ''
+prometheusRule:
+  enabled: false
+  labels: {}
+  rules: []
+replicaCount: 1
+resources: {}
+restartPolicy: Always
+secretMounts: []
+securityContext:
+  enabled: true
+  runAsUser: 1000
+service:
+  annotations: {}
+  httpPort: 9108
+  labels: {}
+  metricsPort:
+    name: http
+  type: ClusterIP
+serviceAccount:
+  annotations: {}
+  automountServiceAccountToken: true
+  create: false
+  name: default
+serviceMonitor:
+  enabled: true
+  interval: 60s
+  jobLabel: ''
+  labels:
+    app: elasticsearch-master
+    release: rancher-monitoring
+  metricRelabelings:
+    - action: keep
+      regex: >-
+        (elasticsearch_filesystem_data_available_bytes|elasticsearch_filesystem_data_size_bytes|elasticsearch_cluster_health_status|elasticsearch_cluster_health_number_of_nodes|elasticsearch_cluster_health_unassigned_shards|elasticsearch_cluster_health_number_of_pending_tasks|elasticsearch_indices_docs)
+      sourceLabels:
+        - __name__
+  relabelings: []
+  sampleLimit: 0
+  scheme: http
+  scrapeTimeout: 60s
+  targetLabels: null
+  namespace: prometheus-exporters
+tolerations:
+  - effect: NoSchedule
+    key: node-role
+    operator: Equal
+    value: monitoring
+web:
+  path: /metrics
+

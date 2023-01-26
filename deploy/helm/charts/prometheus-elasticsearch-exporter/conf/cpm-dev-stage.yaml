@@ -28,11 +28,6 @@ extraArgs: []
 extraEnvSecrets: {}
 extraVolumeMounts: []
 extraVolumes: []
-global:
-  imagePullSecrets: []
-log:
-  format: logfmt
-  level: info
 nodeSelector:
   node-role: monitoring
 podAnnotations: {}

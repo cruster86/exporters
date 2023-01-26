@@ -10,6 +10,7 @@ stages:
   before_script:
     - echo 'Deploy parameters:'
     - echo 'CLUSTER_NAME =>' ${CLUSTER_NAME}
+    - echo 'CI_ENVIRONMENT_SLUG =>' ${CI_ENVIRONMENT_SLUG}
     - echo 'RELEASE_NAME =>' ${RELEASE_NAME}
   script:
     - set -x
@@ -19,7 +20,7 @@ stages:
       NAMESPACE="prometheus-exporters"
       CHART="deploy/helm/charts/${RELEASE_NAME}"
       HELM_ARGS="
-      -f deploy/helm/charts/${RELEASE_NAME}/conf/${CLUSTER_NAME}.yaml
+      -f deploy/helm/charts/${RELEASE_NAME}/conf/${CLUSTER_NAME}-${CI_ENVIRONMENT_SLUG}.yaml
       --set global.yc_secret="${YC_REGISTRY}"
       --set global.gitlab_secret="${GITLAB_REGISTRY}"
       --atomic
@@ -35,6 +36,8 @@ cpm-dev deploy:
   variables:
     RELEASE_NAME: "prometheus-elasticsearch-exporter"
     CLUSTER_NAME: "cpm-dev"
+  environment:
+    name: stage
   tags:
     - kube-cpm
 

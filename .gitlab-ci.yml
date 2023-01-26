@@ -117,6 +117,18 @@ corp elasticsearch-exporter deploy:
 #  tags:
 #    - kube-corp
 
+corp prod postgres-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: corp-deploy
+  variables:
+    CHART_NAME: "postgres-elasticsearch-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: prod
+  tags:
+    - kube-corp
+
 ################  UNIV  ################
 
 univ elasticsearch-exporter deploy:
@@ -142,6 +154,18 @@ univ elasticsearch-exporter deploy:
 #    name: prod
 #  tags:
 #    - kube-univ
+
+univ prod postgres-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: univ-deploy
+  variables:
+    CHART_NAME: "postgres-elasticsearch-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: prod
+  tags:
+    - kube-univ
 
 ################  SIRIUS  ################
 

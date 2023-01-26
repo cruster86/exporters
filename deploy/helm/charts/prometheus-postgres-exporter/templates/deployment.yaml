@@ -115,7 +115,7 @@ spec:
                 name: {{ .Values.config.datasource.passwordSecret.name }}
                 key: {{ .Values.config.datasource.passwordSecret.key }}
           {{- else }}
-                name: {{ templa . }}
+                name: {{ template "prometheus-postgres-exporter.name" . }}
                 key: data_source_password
           {{- end }}
           {{- end }}
@@ -186,8 +186,6 @@ spec:
       - configMap:
           defaultMode: 420
           {{- if not .Values.config.externalQueries.enabled }}
-          name: {{ templa . }}
-          {{- else }}
           name: {{ .Values.config.externalQueries.configmap }}
           {{- end }}
         name: queries

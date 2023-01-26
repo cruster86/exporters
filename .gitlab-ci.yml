@@ -60,7 +60,7 @@ cpm-dev elasticsearch-exporter deploy:
 #    - .base-deploy-exporter
 #  stage: cpm-yc-deploy
 #  variables:
-#    CHART_NAME: "ngenix-elasticsearch-exporter"
+#    CHART_NAME: "prometheus-ngenix-exporter"
 #    CLUSTER_NAME: "cpm"
 #  environment:
 #    name: prod
@@ -72,7 +72,7 @@ cpm-dev elasticsearch-exporter deploy:
 #    - .base-deploy-exporter
 #  stage: cpm-yc-deploy
 #  variables:
-#    CHART_NAME: "redis-elasticsearch-exporter"
+#    CHART_NAME: "prometheus-redis-exporter"
 #    CLUSTER_NAME: "cpm"
 #  environment:
 #    name: prod
@@ -84,7 +84,7 @@ cpm-dev elasticsearch-exporter deploy:
 #    - .base-deploy-exporter
 #  stage: cpm-yc-deploy
 #  variables:
-#    CHART_NAME: "postgres-elasticsearch-exporter"
+#    CHART_NAME: "prometheus-postgres-exporter"
 #    CLUSTER_NAME: "cpm"
 #  environment:
 #    name: prod
@@ -122,10 +122,46 @@ corp prod postgres-exporter deploy:
     - .base-deploy-exporter
   stage: corp-deploy
   variables:
-    CHART_NAME: "postgres-elasticsearch-exporter"
+    CHART_NAME: "prometheus-postgres-exporter"
     CLUSTER_NAME: "corp"
   environment:
     name: prod
+  tags:
+    - kube-corp
+
+corp stage postgres-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: corp-deploy
+  variables:
+    CHART_NAME: "prometheus-postgres-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: stage
+  tags:
+    - kube-corp
+
+corp prod redis-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: corp-deploy
+  variables:
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: prod
+  tags:
+    - kube-corp
+
+corp stage redis-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: corp-deploy
+  variables:
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: stage
   tags:
     - kube-corp
 
@@ -160,10 +196,46 @@ univ prod postgres-exporter deploy:
     - .base-deploy-exporter
   stage: univ-deploy
   variables:
-    CHART_NAME: "postgres-elasticsearch-exporter"
+    CHART_NAME: "prometheus-postgres-exporter"
     CLUSTER_NAME: "univ"
   environment:
     name: prod
+  tags:
+    - kube-univ
+
+univ stage postgres-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: univ-deploy
+  variables:
+    CHART_NAME: "prometheus-postgres-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: stage
+  tags:
+    - kube-univ
+
+univ prod redis-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: univ-deploy
+  variables:
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: prod
+  tags:
+    - kube-univ
+
+univ stage redis-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: univ-deploy
+  variables:
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: stage
   tags:
     - kube-univ
 
@@ -190,5 +262,53 @@ univ prod postgres-exporter deploy:
 #    CLUSTER_NAME: "sirius"
 #  environment:
 #    name: prod
+#  tags:
+#    - kube-ci
+
+#sirius prod postgres-exporter deploy:
+#  extends:
+#    - .base-deploy-exporter
+#  stage: sirius-deploy
+#  variables:
+#    CHART_NAME: "prometheus-postgres-exporter"
+#    CLUSTER_NAME: "sirius"
+#  environment:
+#    name: prod
+#  tags:
+#    - kube-ci
+
+#sirius stage postgres-exporter deploy:
+#  extends:
+#    - .base-deploy-exporter
+#  stage: sirius-deploy
+#  variables:
+#    CHART_NAME: "prometheus-postgres-exporter"
+#    CLUSTER_NAME: "sirius"
+#  environment:
+#    name: stage
+#  tags:
+#    - kube-ci
+
+#sirius prod redis-exporter deploy:
+#  extends:
+#    - .base-deploy-exporter
+#  stage: sirius-deploy
+#  variables:
+#    CHART_NAME: "prometheus-redis-exporter"
+#    CLUSTER_NAME: "sirius"
+#  environment:
+#    name: prod
+#  tags:
+#    - kube-ci
+
+#sirius stage redis-exporter deploy:
+#  extends:
+#    - .base-deploy-exporter
+#  stage: sirius-deploy
+#  variables:
+#    CHART_NAME: "prometheus-redis-exporter"
+#    CLUSTER_NAME: "sirius"
+#  environment:
+#    name: stage
 #  tags:
 #    - kube-ci

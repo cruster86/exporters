@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   name: {{ template "prometheus-elasticsearch-exporter.name" . }}
   labels:
-    chart: {{ template "prometheus-.chart" . }}
-    app: {{ template "prometheus-.name" . }}
+    chart: {{ template "prometheus-elasticsearch-exporter.chart" . }}
+    app: {{ template "prometheus-elasticsearch-exporter.name" . }}
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
   {{- with .Values.deployment.labels }}
@@ -18,7 +18,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "prometheus-.name" . }}
+      app: {{ template "prometheus-elasticsearch-exporter.name" . }}
       release: "{{ .Release.Name }}"
   strategy:
     rollingUpdate:
@@ -28,7 +28,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "prometheus-.name" . }}
+        app: {{ template "prometheus-elasticsearch-exporter.name" . }}
         release: "{{ .Release.Name }}"
       {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
@@ -39,7 +39,7 @@ spec:
       {{- end }}
     spec:
       {{- if .Values.serviceAccount.create  }}
-      serviceAccountName: {{ template "prometheus-.name" . }}
+      serviceAccountName: {{ template "prometheus-elasticsearch-exporter.name" . }}
       {{- else }}
       serviceAccountName: {{ .Values.serviceAccount.name }}
       {{- end }}
@@ -184,7 +184,7 @@ spec:
         {{- if and .Values.es.ssl.enabled (eq .Values.es.ssl.useExistingSecrets false) }}
         - name: ssl
           secret:
-            secretName: {{ template "prometheus-.name" . }}-cert
+            secretName: {{ template "prometheus-elasticsearch-exporter.name" . }}-cert
         {{- end }}
         {{- range .Values.secretMounts }}
         - name: {{ .name }}

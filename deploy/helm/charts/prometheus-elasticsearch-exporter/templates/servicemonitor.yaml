@@ -8,8 +8,8 @@ metadata:
   namespace: {{ .Values.serviceMonitor.namespace }}
   {{- end }}
   labels:
-    chart: {{ template "prometheus-.chart" . }}
-    app: {{ template "prometheus-.name" . }}
+    chart: {{ template "prometheus-elasticsearch-exporter.chart" . }}
+    app: {{ template "prometheus-elasticsearch-exporter.name" . }}
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
     {{- if .Values.serviceMonitor.labels }}

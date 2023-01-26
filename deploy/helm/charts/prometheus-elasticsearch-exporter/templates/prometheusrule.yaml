@@ -8,8 +8,8 @@ metadata:
   namespace: {{ .Values.prometheusRule.namespace }}
 {{- end }}
   labels:
-    chart: {{ template "prometheus-.chart" . }}
-    app: {{ template "prometheus-.name" . }}
+    chart: {{ template "prometheus-elasticsearch-exporter.chart" . }}
+    app: {{ template "prometheus-elasticsearch-exporter.name" . }}
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 {{- if .Values.prometheusRule.labels }}
@@ -18,7 +18,7 @@ metadata:
 spec:
 {{- with .Values.prometheusRule.rules }}
   groups:
-    - name: {{ template "prometheus-.name" $ }}
+    - name: {{ template "prometheus-elasticsearch-exporter.name" $ }}
       rules: {{ tpl (toYaml .) $ | nindent 8 }}
 {{- end }}
 {{- end }}

@@ -29,12 +29,36 @@ stages:
 
 ##############  CPM-DEV  ############
 
-cpm-dev deploy:
+elasticsearch-exporter deploy:
   extends:
     - .base-deploy-exporter
   stage: cpm-dev-deploy
   variables:
     CHART_NAME: "prometheus-elasticsearch-exporter"
+    CLUSTER_NAME: "cpm-dev"
+  environment:
+    name: stage
+  tags:
+    - kube-cpm
+
+redis-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: cpm-dev-deploy
+  variables:
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "cpm-dev"
+  environment:
+    name: stage
+  tags:
+    - kube-cpm
+
+postgres-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: cpm-dev-deploy
+  variables:
+    CHART_NAME: "prometheus-postgres-exporter"
     CLUSTER_NAME: "cpm-dev"
   environment:
     name: stage

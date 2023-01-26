@@ -1,0 +1,32 @@
+namespace: prometheus-exporters
+
+imagePullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: gitlab-deploy-rancher
+
+config_ids: {}
+
+resources:
+  requests:
+    memory: 100Mi
+    cpu: 100m
+  limits:
+    memory: 300Mi
+
+nodeSelector:
+  node-role: monitoring
+
+tolerations:
+  - effect: NoSchedule
+    key: node-role
+    operator: Equal
+    value: monitoring
+
+service:
+  type: ClusterIP
+
+servicemonitor:
+  namespace: prometheus-exporters
+  release: rancher-monitoring
+

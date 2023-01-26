@@ -1,0 +1,23 @@
+{{- if .Values.podSecurityPolicies.enabled }}
+apiVersion: {{ template "rbac.apiVersion" . }}
+kind: RoleBinding
+metadata:
+  name: {{ template "prometheus-elasticsearch-exporter.name" . }}
+  labels:
+    chart: {{ template "prometheus-.chart" . }}
+    app: {{ template "prometheus-.name" . }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ template "prometheus-.name" . }}
+subjects:
+- kind: ServiceAccount
+  {{- if .Values.serviceAccount.create  }}
+  name: {{ template "prometheus-.name" . }}
+  {{- else }}
+  name: {{ .Values.serviceAccount.name }}
+  {{- end }}
+  namespace: {{ .Release.Namespace }}
+{{- end }}

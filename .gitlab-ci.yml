@@ -33,7 +33,7 @@ cpm-dev deploy:
     - .base-deploy-exporter
   stage: cpm-dev-deploy
   variables:
-    RELEASE_NAME: "elasticsearch-exporter"
+    RELEASE_NAME: "prometheus-elasticsearch-exporter"
     CLUSTER_NAME: "cpm-dev"
   tags:
     - kube-cpm

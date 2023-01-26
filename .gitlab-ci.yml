@@ -1,8 +1,8 @@
 stages:
   - cpm-dev-deploy
+  - corp-deploy
+  - univ-deploy
 #  - cpm-yc-deploy
-#  - corp-deploy
-#  - univ-deploy
 #  - sirius-deploy
 
 .base-deploy-exporter:

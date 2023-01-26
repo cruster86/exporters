@@ -93,17 +93,17 @@ cpm-dev elasticsearch-exporter deploy:
 
 ################  CORP  ################
 
-#corp elasticsearch-exporter deploy:
-#  extends:
-#    - .base-deploy-exporter
-#  stage: corp-deploy
-#  variables:
-#    CHART_NAME: "prometheus-elasticsearch-exporter"
-#    CLUSTER_NAME: "corp"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-corp
+corp elasticsearch-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: corp-deploy
+  variables:
+    CHART_NAME: "prometheus-elasticsearch-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: prod
+  tags:
+    - kube-corp
 
 #corp ngenix-exporter deploy:
 #  extends:
@@ -119,17 +119,17 @@ cpm-dev elasticsearch-exporter deploy:
 
 ################  UNIV  ################
 
-#univ elasticsearch-exporter deploy:
-#  extends:
-#    - .base-deploy-exporter
-#  stage: univ-deploy
-#  variables:
-#    CHART_NAME: "prometheus-elasticsearch-exporter"
-#    CLUSTER_NAME: "univ"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-univ
+univ elasticsearch-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: univ-deploy
+  variables:
+    CHART_NAME: "prometheus-elasticsearch-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: prod
+  tags:
+    - kube-univ
 
 #univ ngenix-exporter deploy:
 #  extends:

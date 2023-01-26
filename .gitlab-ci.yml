@@ -1,0 +1,85 @@
+stages:
+  - cpm-dev-deploy
+#  - cpm-yc-deploy
+#  - corp-deploy
+#  - univ-deploy
+#  - sirius-deploy
+
+.base-deploy-exporter:
+  when: manual
+  before_script:
+    - echo 'Deploy parameters:'
+    - echo 'CLUSTER_NAME =>' ${CLUSTER_NAME}
+    - echo 'RELEASE_NAME =>' ${RELEASE_NAME}
+  script:
+    - set -x
+    - kubectl get ns prometheus-exporters || kubectl create ns prometheus-exporters
+    - chmod +x ./scripts/helm_deploy_and_wait.sh
+    - RELEASE_NAME="${RELEASE_NAME}"
+      NAMESPACE="prometheus-exporters"
+      CHART="deploy/helm"
+      HELM_ARGS="
+      -f deploy/helm/charts/${RELEASE_NAME}/conf/${CLUSTER_NAME}.yaml
+      --set global.yc_secret="${YC_REGISTRY}"
+      --set global.gitlab_secret="${GITLAB_REGISTRY}"
+      --atomic
+      --wait"
+      ./scripts/helm_deploy_and_wait.sh
+
+##############  CPM-DEV  ############
+
+cpm-dev deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: cpm-dev-deploy
+  variables:
+    RELEASE_NAME: "elasticsearch-exporter"
+    CLUSTER_NAME: "cpm-dev"
+  tags:
+    - kube-cpm
+
+##############  CPM-YC  ############
+#
+#cpm-yc deploy:
+#  extends:
+#    - .base-elasticsearch-exporter
+#  stage: cpm-yc-deploy
+#  variables:
+#    CLUSTER_NAME: "cpm"
+#  environment:
+#    name: prod
+#  tags:
+#    - cpm-yac
+#
+##############  CORP  ############
+#
+#corp deploy:
+#  extends:
+#    - .base-elasticsearch-exporter
+#  stage: corp-deploy
+#  variables:
+#    CLUSTER_NAME: "corp"
+#  tags:
+#    - kube-corp
+#
+##############  UNIV  ############
+#
+#univ deploy:
+#  extends:
+#    - .base-elasticsearch-exporter
+#  stage: univ-deploy
+#  variables:
+#    CLUSTER_NAME: "univ"
+#  tags:
+#    - kube-univ
+#
+##############  SIRIUS  ############
+#
+#sirius deploy:
+#  extends:
+#    - .base-elasticsearch-exporter
+#  stage: sirius-deploy
+#  variables:
+#    CLUSTER_NAME: "sirius"
+#  tags:
+#    - kube-ci

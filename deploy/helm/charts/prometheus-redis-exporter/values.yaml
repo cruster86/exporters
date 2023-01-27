@@ -10,8 +10,10 @@ replicaCount: 1
 
 image:
   pullPolicy: IfNotPresent
-  repository: oliver006/redis_exporter
+  repository: registry.sirius.online/infra/exporters/redis-exporter
   tag: v1.45.0
+  pullSecret:
+    - gitlab-registry
 
 extraArgs: {}
 

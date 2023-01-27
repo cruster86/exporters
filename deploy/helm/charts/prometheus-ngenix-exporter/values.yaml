@@ -30,4 +30,3 @@ service:
 servicemonitor:
   namespace: prometheus-exporters
   release: rancher-monitoring
-

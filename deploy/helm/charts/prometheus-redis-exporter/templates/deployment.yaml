@@ -28,7 +28,7 @@ spec:
       {{- end }}
     spec:
       serviceAccountName: {{ template "prometheus-redis-exporter.serviceAccountName" . }}
-      {{- if .Values.image.pullSecrets }}
+      {{- if .Values.image.pullSecret }}
       imagePullSecrets:
       {{- range .Values.image.pullSecret }}
         - name: {{ . }}

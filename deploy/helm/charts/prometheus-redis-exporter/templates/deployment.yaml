@@ -3,20 +3,26 @@ kind: Deployment
 metadata:
   name: {{ template "prometheus-redis-exporter.name" . }}
   labels:
-{{ include "prometheus-redis-exporter.labels" . | indent 4 }}
+    app: {{ template "prometheus-redis-exporter.name" . }}
+    chart: {{ template "prometheus-redis-exporter.chart" . }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
   annotations:
 {{ toYaml .Values.annotations | indent 8 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "prometheus-redis-exporter.selectorLabels" . | nindent 6 }}
+      app: {{ template "prometheus-postgres-exporter.name" . }}
   template:
     metadata:
       annotations:
 {{ toYaml .Values.annotations | indent 8 }}
       labels:
-{{ include "prometheus-redis-exporter.labels" . | indent 8 }}
+        app: {{ template "prometheus-postgres-exporter.name" . }}
+        chart: {{ template "prometheus-postgres-exporter.chart" . }}
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
       {{- if .Values.labels }}
 {{ toYaml .Values.labels | indent 8 }}
       {{- end }}

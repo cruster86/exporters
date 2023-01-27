@@ -1,10 +1,13 @@
 {{- if .Values.rbac.create }}
-apiVersion: {{ template "rbac.apiVersion" . }}
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
   name: {{ template "prometheus-redis-exporter.name" . }}
   labels:
-{{ include "prometheus-redis-exporter.labels" . | indent 4 }}
+    app: {{ template "prometheus-redis-exporter.name" . }}
+    chart: {{ template "prometheus-redis-exporter.chart" . }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 {{- if .Values.rbac.pspEnabled }}
 rules:
 - apiGroups:      ['extensions']

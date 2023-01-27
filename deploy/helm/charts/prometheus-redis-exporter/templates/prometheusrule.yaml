@@ -7,7 +7,10 @@ metadata:
   namespace: {{ . }}
 {{- end }}
   labels:
-{{ include "prometheus-redis-exporter.labels" . | indent 4 }}
+    app: {{ template "prometheus-redis-exporter.name" . }}
+    chart: {{ template "prometheus-redis-exporter.chart" . }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 {{- with .Values.prometheusRule.additionalLabels }}
 {{ toYaml . | indent 4 }}
 {{- end }}

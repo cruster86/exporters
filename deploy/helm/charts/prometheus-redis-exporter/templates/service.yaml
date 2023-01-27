@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: {{ template "prometheus-redis-exporter.name" . }}
   labels:
-{{ include "prometheus-redis-exporter.labels" . | indent 4 }}
-{{- if .Values.service.labels }}
-{{ toYaml .Values.service.labels | indent 4 }}
-{{- end }}
+    app: {{ template "prometheus-redis-exporter.name" . }}
+    chart: {{ template "prometheus-redis-exporter.chart" . }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
 spec:
@@ -17,4 +17,4 @@ spec:
       targetPort: exporter-port
       protocol: TCP
   selector:
-    {{- include "prometheus-redis-exporter.selectorLabels" . | nindent 4 }}
+    app: {{ template "prometheus-redis-exporter.name" . }}

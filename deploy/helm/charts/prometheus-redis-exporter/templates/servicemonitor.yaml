@@ -6,7 +6,7 @@ metadata:
   labels:
 {{ toYaml .Values.serviceMonitor.labels | indent 4}}
 {{- end }}
-  name: {{ template "prometheus-redis-exporter.fullname" . }}
+  name: {{ template "prometheus-redis-exporter.name" . }}
 {{- if .Values.serviceMonitor.namespace }}
   namespace: {{ .Values.serviceMonitor.namespace }}
 {{- end }}
@@ -74,7 +74,7 @@ spec:
 {{ toYaml .Values.serviceMonitor.tlsConfig | indent 6 }}
 {{- end }}
 {{- end }}
-  jobLabel: {{ template "prometheus-redis-exporter.fullname" . }}
+  jobLabel: {{ template "prometheus-redis-exporter.name" . }}
   namespaceSelector:
     matchNames:
     - {{ .Release.Namespace }}

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "prometheus-redis-exporter.fullname" . }}
+  name: {{ template "prometheus-redis-exporter.name" . }}
   labels:
 {{ include "prometheus-redis-exporter.labels" . | indent 4 }}
   annotations:

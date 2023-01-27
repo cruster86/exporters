@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ template "prometheus-redis-exporter.fullname" . }}
+  name: {{ template "prometheus-redis-exporter.name" . }}
 {{- with .Values.prometheusRule.namespace }}
   namespace: {{ . }}
 {{- end }}

@@ -1,46 +1,10 @@
 affinity: {}
-annotations: {}
-auth:
-  enabled: false
-  redisPassword: ''
-  secret:
-    key: ''
-    name: ''
-customLabels: {}
-env: {}
-extraArgs: {}
-image:
-  pullPolicy: IfNotPresent
-  repository: oliver006/redis_exporter
-  tag: v1.11.1
-labels: {}
+
 nodeSelector:
   node-role: redis
-prometheusRule:
-  additionalLabels: {}
-  enabled: false
-  namespace: ''
-  rules: []
-rbac:
-  create: true
-  pspEnabled: true
+
 redisAddress: 'redis://redis-prod-redis-ha:6379'
-redisAddressConfig:
-  configmap:
-    key: ''
-    name: ''
-  enabled: false
-replicaCount: 1
-resources: {}
-securityContext: {}
-service:
-  annotations: {}
-  labels: {}
-  port: 9121
-  type: ClusterIP
-serviceAccount:
-  create: true
-  name: null
+
 serviceMonitor:
   enabled: true
   lables:
@@ -51,6 +15,7 @@ serviceMonitor:
         (redis_up|redis_memory_used_bytes|redis_connected_clients|redis_used_memory|redis_used_memory_rss|redis_blocked_clients|redis_total_commands_processed|container_memory_working_set_bytes|redis_session_count|redis_uptime_in_seconds|redis_keyspace_hits_total|redis_keyspace_misses_total|redis_expired_keys_total|redis_evicted_keys_total|redis_memory_max_bytes|redis_net_input_bytes_total|redis_net_output_bytes_total|redis_db_keys|redis_db_keys_expiring|redis_commands_processed_total|redis_commands_total|redis_blocked_clients|redis_connected_slaves|redis_min_slaves_good_slaves|redis_memory_used_rss_bytes|redis_session_count|redis_stream_last_entry|redis_stream_first_entry|redis_stream_group_first_pending_id|redis_stream_group_num_pending|redis_stream_group_num_consumers)
       sourceLabels:
         - __name__
+
 tolerations:
   - effect: NoSchedule
     key: node-role

@@ -4,13 +4,14 @@ rbac:
 
 serviceAccount:
   create: true
-  name:
+  name: null
 
 replicaCount: 1
+
 image:
-  repository: oliver006/redis_exporter
   pullPolicy: IfNotPresent
-  tag: ""
+  repository: oliver006/redis_exporter
+  tag: v1.27.0
 
 extraArgs: {}
 

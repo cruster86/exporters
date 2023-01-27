@@ -2,10 +2,11 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-{{- if .Values.serviceMonitor.labels }}
   labels:
-{{ toYaml .Values.serviceMonitor.labels | indent 4}}
-{{- end }}
+    app: {{ template "prometheus-redis-exporter.name" . }}
+    chart: {{ template "prometheus-redis-exporter.chart" . }}
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
   name: {{ template "prometheus-redis-exporter.name" . }}
 {{- if .Values.serviceMonitor.namespace }}
   namespace: {{ .Values.serviceMonitor.namespace }}
@@ -80,7 +81,7 @@ spec:
     - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      app: {{- include "prometheus-redis-exporter.name" . | nindent 6 }}
+      app: {{ template "prometheus-redis-exporter.name" . }}
 {{- if .Values.serviceMonitor.targetLabels }}
   targetLabels:
 {{- range .Values.serviceMonitor.targetLabels }}

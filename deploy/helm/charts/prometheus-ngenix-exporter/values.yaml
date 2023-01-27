@@ -1,6 +1,6 @@
 namespace: prometheus-exporters
 
-image: registry.sirius.online/cheops-edu/ngenix-client/prometheus-ngenix-exporter
+image: registry.sirius.online/infra/exporters/ngenix-exporter
 imageTag: latest
 imagePullSecrets:
   - name: gitlab-registry

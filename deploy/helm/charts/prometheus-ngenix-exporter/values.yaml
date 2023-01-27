@@ -1,9 +1,10 @@
 namespace: prometheus-exporters
 
-imagePullPolicy: IfNotPresent
-
+image: registry.sirius.online/cheops-edu/ngenix-client/prometheus-ngenix-exporter
+imageTag: latest
 imagePullSecrets:
-  - name: gitlab-deploy-rancher
+  - name: gitlab-registry
+imagePullPolicy: Always
 
 config_ids: {}
 

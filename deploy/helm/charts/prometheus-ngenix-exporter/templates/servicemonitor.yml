@@ -13,7 +13,8 @@ spec:
       path: /_metrics
       port: health
   namespaceSelector:
-    any: true
+    matchNames:
+      - {{ .Release.Namespace }}
   selector:
     matchLabels:
       name: {{ template "prometheus-ngenix-exporter.name" . }}

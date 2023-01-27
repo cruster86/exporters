@@ -23,6 +23,8 @@ stages:
       -f deploy/helm/charts/${CHART_NAME}/conf/${CLUSTER_NAME}-${CI_ENVIRONMENT_SLUG}.yaml
       --set global.yc_secret="${YC_REGISTRY}"
       --set global.gitlab_secret="${GITLAB_REGISTRY}"
+      --set global.ngenix_user_login="${NGENIX_USER_LOGIN}"
+      --set global.ngenix_user_token="${NGENIX_USER_TOKEN}"
       --atomic
       --wait"
       ./scripts/helm_deploy_and_wait.sh
@@ -105,17 +107,17 @@ corp elasticsearch-exporter deploy:
   tags:
     - kube-corp
 
-#corp ngenix-exporter deploy:
-#  extends:
-#    - .base-deploy-exporter
-#  stage: corp-deploy
-#  variables:
-#    CHART_NAME: "ngenix-elasticsearch-exporter"
-#    CLUSTER_NAME: "corp"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-corp
+corp ngenix-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: corp-deploy
+  variables:
+    CHART_NAME: "ngenix-elasticsearch-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: prod
+  tags:
+    - kube-corp
 
 corp prod postgres-exporter deploy:
   extends:
@@ -129,18 +131,6 @@ corp prod postgres-exporter deploy:
   tags:
     - kube-corp
 
-corp stage postgres-exporter deploy:
-  extends:
-    - .base-deploy-exporter
-  stage: corp-deploy
-  variables:
-    CHART_NAME: "prometheus-postgres-exporter"
-    CLUSTER_NAME: "corp"
-  environment:
-    name: stage
-  tags:
-    - kube-corp
-
 corp prod redis-exporter deploy:
   extends:
     - .base-deploy-exporter
@@ -150,18 +140,6 @@ corp prod redis-exporter deploy:
     CLUSTER_NAME: "corp"
   environment:
     name: prod
-  tags:
-    - kube-corp
-
-corp stage redis-exporter deploy:
-  extends:
-    - .base-deploy-exporter
-  stage: corp-deploy
-  variables:
-    CHART_NAME: "prometheus-redis-exporter"
-    CLUSTER_NAME: "corp"
-  environment:
-    name: stage
   tags:
     - kube-corp
 
@@ -179,17 +157,17 @@ univ elasticsearch-exporter deploy:
   tags:
     - kube-univ
 
-#univ ngenix-exporter deploy:
-#  extends:
-#    - .base-deploy-exporter
-#  stage: univ-deploy
-#  variables:
-#    CHART_NAME: "prometheus-ngenix-exporter"
-#    CLUSTER_NAME: "univ"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-univ
+univ ngenix-exporter deploy:
+  extends:
+    - .base-deploy-exporter
+  stage: univ-deploy
+  variables:
+    CHART_NAME: "prometheus-ngenix-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: prod
+  tags:
+    - kube-univ
 
 univ prod postgres-exporter deploy:
   extends:

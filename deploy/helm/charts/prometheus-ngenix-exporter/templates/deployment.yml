@@ -29,12 +29,12 @@ spec:
       containers:
       - env:
         - name: USER_LOGIN
-          value: {{ .Values.global.user_login }}
+          value: {{ .Values.global.ngenix_user_login }}
         - name: USER_TOKEN
-          value: {{ .Values.global.user_token }}
+          value: {{ .Values.global.ngenix_user_token }}
         - name: CONFIG_IDS
           value: {{ .Values.config_ids | squote }}
-        image: registry.sirius.online/cheops-edu/ngenix-client/prometheus-ngenix-exporter:{{ .Values.global.tag }}
+        image: {{ .Values.image }}:{{ .Values.imageTag }}
         imagePullPolicy: {{ .Values.imagePullPolicy }}
         name: {{ .Chart.Name }}
         lifecycle:

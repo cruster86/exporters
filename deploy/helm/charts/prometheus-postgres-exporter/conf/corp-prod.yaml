@@ -24,7 +24,7 @@ config:
   disableSettingsMetrics: false
   excludeDatabases: []
   externalQueries:
-    configmap: postgresql-common-exporter-queries
+  #  configmap: postgresql-common-exporter-queries
     enabled: false
   includeDatabases: []
   logFormat: ''

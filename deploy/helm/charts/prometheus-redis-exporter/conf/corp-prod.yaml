@@ -3,7 +3,7 @@ affinity: {}
 nodeSelector:
   node-role: redis
 
-redisAddress: 'redis://redis-prod-redis-ha:6379'
+redisAddress: 'redis://10.43.191.155:6379'
 
 serviceMonitor:
   enabled: true

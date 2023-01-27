@@ -11,7 +11,7 @@ replicaCount: 1
 image:
   pullPolicy: IfNotPresent
   repository: oliver006/redis_exporter
-  tag: v1.27.0
+  tag: v1.45.0
 
 extraArgs: {}
 

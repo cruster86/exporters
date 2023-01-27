@@ -112,7 +112,7 @@ corp ngenix-exporter deploy:
     - .base-deploy-exporter
   stage: corp-deploy
   variables:
-    CHART_NAME: "ngenix-elasticsearch-exporter"
+    CHART_NAME: "prometheus-ngenix-exporter"
     CLUSTER_NAME: "corp"
   environment:
     name: prod

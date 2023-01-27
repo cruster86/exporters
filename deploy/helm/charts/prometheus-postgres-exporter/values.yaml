@@ -1,11 +1,11 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/prometheuscommunity/postgres-exporter
+  repository: registry.sirius.online/infra/exporters/postgres-exporter
   tag: v0.11.1
   pullPolicy: IfNotPresent
-  #pullSecret:
-  #  - SecretName
+  pullSecret:
+    - gitlab-registry
 
 service:
   type: ClusterIP

@@ -24,7 +24,7 @@ config:
   disableSettingsMetrics: false
   excludeDatabases: null
   externalQueries:
-    configmap: postgresql-common-exporter-queries
+    configmap: prometheus-postgres-exporter
     enabled: false
   includeDatabases: null
   logFormat: ''

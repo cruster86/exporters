@@ -15,6 +15,5 @@ spec:
       targetPort: 11020
   selector:
     {{- include "prometheus-ngenix-exporter.selectorLabels" . | nindent 4 }}
-    app: {{ template "prometheus-ngenix-exporter.name" . }}
   sessionAffinity: None
 

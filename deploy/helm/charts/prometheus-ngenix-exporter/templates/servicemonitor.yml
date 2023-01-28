@@ -17,4 +17,4 @@ spec:
       - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      name: {{ template "prometheus-ngenix-exporter.name" . }}
+      {{- include "prometheus-ngenix-exporter.selectorLabels" . | nindent 6 }}

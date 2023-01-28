@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "prometheus-ngenix-exporter.selectorLabels" . | nindent 8 }}
+        {{- include "prometheus-ngenix-exporter.labels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

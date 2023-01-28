@@ -127,31 +127,31 @@ corp ngenix-exporter deploy:
   tags:
     - kube-corp
 
-#corp prod postgres-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: corp-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-postgres-exporter"
-#    CLUSTER_NAME: "corp"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-corp
+corp prod postgres-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: corp-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-postgres-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: prod
+  tags:
+    - kube-corp
 
-#corp prod redis-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: corp-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-redis-exporter"
-#    CLUSTER_NAME: "corp"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-corp
+corp prod redis-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: corp-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: prod
+  tags:
+    - kube-corp
 
 #################  UNIV  ################
 

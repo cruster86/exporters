@@ -173,6 +173,7 @@ univ ngenix-exporter deploy:
     - .base-deploy
   stage: univ-deploy
   variables:
+    RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-ngenix-exporter"
     CLUSTER_NAME: "univ"
   environment:

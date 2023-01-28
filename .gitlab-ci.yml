@@ -12,11 +12,12 @@ stages:
     - echo 'CLUSTER_NAME =>' ${CLUSTER_NAME}
     - echo 'CI_ENVIRONMENT_SLUG =>' ${CI_ENVIRONMENT_SLUG}
     - echo 'CHART_NAME =>' ${CHART_NAME}
+    - echo 'RELEASE =>' ${RELEASE}
   script:
     - set -x
     - kubectl get ns prometheus-exporters-${CI_ENVIRONMENT_SLUG} || kubectl create ns prometheus-exporters-${CI_ENVIRONMENT_SLUG}
     - chmod +x ./scripts/helm_deploy_and_wait.sh
-    - RELEASE_NAME="${CHART_NAME}"
+    - RELEASE_NAME="${RELEASE}"
       NAMESPACE="prometheus-exporters-${CI_ENVIRONMENT_SLUG}"
       CHART="deploy/helm/charts/${CHART_NAME}"
       HELM_ARGS="
@@ -36,6 +37,7 @@ cpm-dev elasticsearch-exporter deploy:
     - .base-deploy
   stage: cpm-dev-deploy
   variables:
+    RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
     CLUSTER_NAME: "cpm-dev"
   environment:
@@ -50,6 +52,7 @@ cpm-yc elasticsearch-exporter deploy:
     - .base-deploy
   stage: cpm-yc-deploy
   variables:
+    RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
     CLUSTER_NAME: "cpm"
   environment:
@@ -62,6 +65,7 @@ cpm-yc ngenix-exporter deploy:
     - .base-deploy
   stage: cpm-yc-deploy
   variables:
+    RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-ngenix-exporter"
     CLUSTER_NAME: "cpm"
   environment:
@@ -74,6 +78,7 @@ cpm-yc ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: cpm-yc-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}" 
 #    CHART_NAME: "prometheus-redis-exporter"
 #    CLUSTER_NAME: "cpm"
 #  environment:
@@ -86,6 +91,7 @@ cpm-yc ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: cpm-yc-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-postgres-exporter"
 #    CLUSTER_NAME: "cpm"
 #  environment:
@@ -100,6 +106,7 @@ corp elasticsearch-exporter deploy:
     - .base-deploy
   stage: corp-deploy
   variables:
+    RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
     CLUSTER_NAME: "corp"
   environment:
@@ -112,6 +119,7 @@ corp ngenix-exporter deploy:
     - .base-deploy
   stage: corp-deploy
   variables:
+    RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-ngenix-exporter"
     CLUSTER_NAME: "corp"
   environment:
@@ -124,6 +132,7 @@ corp ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: corp-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-postgres-exporter"
 #    CLUSTER_NAME: "corp"
 #  environment:
@@ -136,6 +145,7 @@ corp ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: corp-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-redis-exporter"
 #    CLUSTER_NAME: "corp"
 #  environment:
@@ -150,6 +160,7 @@ univ elasticsearch-exporter deploy:
     - .base-deploy
   stage: univ-deploy
   variables:
+    RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
     CLUSTER_NAME: "univ"
   environment:
@@ -174,6 +185,7 @@ univ ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: univ-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-postgres-exporter"
 #    CLUSTER_NAME: "univ"
 #  environment:
@@ -186,6 +198,7 @@ univ ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: univ-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-postgres-exporter"
 #    CLUSTER_NAME: "univ"
 #  environment:
@@ -198,6 +211,7 @@ univ ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: univ-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-redis-exporter"
 #    CLUSTER_NAME: "univ"
 #  environment:
@@ -210,6 +224,7 @@ univ ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: univ-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-redis-exporter"
 #    CLUSTER_NAME: "univ"
 #  environment:
@@ -224,6 +239,7 @@ sirius elasticsearch-exporter deploy:
     - .base-deploy
   stage: sirius-deploy
   variables:
+    RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
     CLUSTER_NAME: "sirius"
   environment:
@@ -236,6 +252,7 @@ sirius ngenix-exporter deploy:
     - .base-deploy
   stage: sirius-deploy
   variables:
+    RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-ngenix-exporter"
     CLUSTER_NAME: "sirius"
   environment:
@@ -248,6 +265,7 @@ sirius ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-postgres-exporter"
 #    CLUSTER_NAME: "sirius"
 #  environment:
@@ -260,6 +278,7 @@ sirius ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-postgres-exporter"
 #    CLUSTER_NAME: "sirius"
 #  environment:
@@ -272,6 +291,7 @@ sirius ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-redis-exporter"
 #    CLUSTER_NAME: "sirius"
 #  environment:
@@ -284,6 +304,7 @@ sirius ngenix-exporter deploy:
 #    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-redis-exporter"
 #    CLUSTER_NAME: "sirius"
 #  environment:

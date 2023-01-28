@@ -3,9 +3,9 @@ kind: ServiceMonitor
 metadata:
   labels:
     name: {{ template "prometheus-ngenix-exporter.name" . }}
-    release: {{ .Values.servicemonitor.release }}
+    release: {{ .Release.Namespace }}
   name: {{ template "prometheus-ngenix-exporter.name" . }}
-  namespace: {{ .Values.servicemonitor.namespace }}
+  namespace: {{ .Release.Namespace }}
 spec:
   endpoints:
     - honorLabels: true

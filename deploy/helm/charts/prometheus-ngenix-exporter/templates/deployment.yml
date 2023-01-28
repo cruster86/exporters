@@ -4,7 +4,7 @@ metadata:
   labels:
     {{- include "prometheus-ngenix-exporter.labels" . | nindent 4 }}
   name: {{ template "prometheus-ngenix-exporter.name" . }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
 spec:
   progressDeadlineSeconds: 600
   replicas:  1

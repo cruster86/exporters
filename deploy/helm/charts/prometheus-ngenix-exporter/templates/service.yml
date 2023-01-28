@@ -5,7 +5,7 @@ metadata:
     {{- include "prometheus-ngenix-exporter.labels" . | nindent 4 }}
     name: {{ template "prometheus-ngenix-exporter.name" . }}
   name: {{ template "prometheus-ngenix-exporter.name" . }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
 spec:
   type: {{ .Values.service.type }}
   ports:

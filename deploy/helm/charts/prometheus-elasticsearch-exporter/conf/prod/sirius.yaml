@@ -78,6 +78,12 @@ serviceMonitor:
   scrapeTimeout: 60s
   targetLabels: []
   namespace: prometheus-exporters
-tolerations: []
+
+tolerations:
+- effect: NoSchedule
+  key: node-role
+  operator: Equal
+  value: monitoring
+
 web:
   path: /metrics

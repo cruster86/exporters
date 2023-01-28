@@ -5,7 +5,7 @@ kind: ServiceMonitor
 metadata:
   name: {{ template "prometheus-elasticsearch-exporter.name" . }}
   {{- if .Values.serviceMonitor.namespace }}
-  namespace: {{ .Values.serviceMonitor.namespace }}
+  namespace: {{ .Release.Namespace }}
   {{- end }}
   labels:
     app: {{ template "prometheus-elasticsearch-exporter.name" . }}

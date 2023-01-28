@@ -2,8 +2,8 @@ stages:
   - cpm-dev-deploy
   - corp-deploy
   - univ-deploy
-#  - cpm-yc-deploy
-#  - sirius-deploy
+  - cpm-yc-deploy
+  - sirius-deploy
 
 .base-deploy:
   when: manual
@@ -45,17 +45,17 @@ cpm-dev elasticsearch-exporter deploy:
 
 ################  CPM-YC  ################
 
-#cpm-yc elasticsearch-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: cpm-yc-deploy
-#  variables:
-#    CHART_NAME: "prometheus-elasticsearch-exporter"
-#    CLUSTER_NAME: "cpm"
-#  environment:
-#    name: prod
-#  tags:
-#    - cpm-yac
+cpm-yc elasticsearch-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: cpm-yc-deploy
+  variables:
+    CHART_NAME: "prometheus-elasticsearch-exporter"
+    CLUSTER_NAME: "cpm"
+  environment:
+    name: prod
+  tags:
+    - cpm-yac
 
 #cpm-yc ngenix-exporter deploy:
 #  extends:
@@ -95,17 +95,17 @@ cpm-dev elasticsearch-exporter deploy:
 
 ################  CORP  ################
 
-#corp elasticsearch-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: corp-deploy
-#  variables:
-#    CHART_NAME: "prometheus-elasticsearch-exporter"
-#    CLUSTER_NAME: "corp"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-corp
+corp elasticsearch-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: corp-deploy
+  variables:
+    CHART_NAME: "prometheus-elasticsearch-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: prod
+  tags:
+    - kube-corp
 
 #corp ngenix-exporter deploy:
 #  extends:
@@ -145,17 +145,17 @@ cpm-dev elasticsearch-exporter deploy:
 
 #################  UNIV  ################
 
-#univ elasticsearch-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: univ-deploy
-#  variables:
-#    CHART_NAME: "prometheus-elasticsearch-exporter"
-#    CLUSTER_NAME: "univ"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-univ
+univ elasticsearch-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: univ-deploy
+  variables:
+    CHART_NAME: "prometheus-elasticsearch-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: prod
+  tags:
+    - kube-univ
 
 #univ ngenix-exporter deploy:
 #  extends:
@@ -219,17 +219,17 @@ cpm-dev elasticsearch-exporter deploy:
 
 ################  SIRIUS  ################
 
-#sirius elasticsearch-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: sirius-deploy
-#  variables:
-#    CHART_NAME: "prometheus-elasticsearch-exporter"
-#    CLUSTER_NAME: "sirius"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-ci
+sirius elasticsearch-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: sirius-deploy
+  variables:
+    CHART_NAME: "prometheus-elasticsearch-exporter"
+    CLUSTER_NAME: "sirius"
+  environment:
+    name: prod
+  tags:
+    - kube-ci
 
 #sirius ngenix-exporter deploy:
 #  extends:

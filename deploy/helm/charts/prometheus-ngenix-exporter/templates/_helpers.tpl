@@ -35,6 +35,7 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "prometheus-ngenix-exporter.labels" -}}
+release: "{{ .Release.Name }}"
 helm.sh/chart: {{ include "prometheus-ngenix-exporter.chart" . }}
 {{ include "prometheus-ngenix-exporter.selectorLabels" . }}
 {{- if .Chart.AppVersion }}

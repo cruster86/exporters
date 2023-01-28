@@ -5,7 +5,7 @@ stages:
 #  - cpm-yc-deploy
 #  - sirius-deploy
 
-.base-deploy-exporter:
+.base-deploy:
   when: manual
   before_script:
     - echo 'Deploy parameters:'
@@ -20,7 +20,7 @@ stages:
       NAMESPACE="prometheus-exporters-${CI_ENVIRONMENT_SLUG}"
       CHART="deploy/helm/charts/${CHART_NAME}"
       HELM_ARGS="
-      -f deploy/helm/charts/${CHART_NAME}/conf/${CLUSTER_NAME}-${CI_ENVIRONMENT_SLUG}.yaml
+      -f deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml
       --set global.yc_secret="${YC_REGISTRY}"
       --set global.gitlab_secret="${GITLAB_REGISTRY}"
       --set global.ngenix_user_login="${NGENIX_USER_LOGIN}"
@@ -33,7 +33,7 @@ stages:
 
 cpm-dev elasticsearch-exporter deploy:
   extends:
-    - .base-deploy-exporter
+    - .base-deploy
   stage: cpm-dev-deploy
   variables:
     CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -47,7 +47,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #cpm-yc elasticsearch-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: cpm-yc-deploy
 #  variables:
 #    CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -59,7 +59,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #cpm-yc ngenix-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: cpm-yc-deploy
 #  variables:
 #    CHART_NAME: "prometheus-ngenix-exporter"
@@ -71,7 +71,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #cpm-yc redis-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: cpm-yc-deploy
 #  variables:
 #    CHART_NAME: "prometheus-redis-exporter"
@@ -83,7 +83,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #cpm-yc postgres-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: cpm-yc-deploy
 #  variables:
 #    CHART_NAME: "prometheus-postgres-exporter"
@@ -97,7 +97,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #corp elasticsearch-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: corp-deploy
 #  variables:
 #    CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -109,7 +109,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #corp ngenix-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: corp-deploy
 #  variables:
 #    CHART_NAME: "prometheus-ngenix-exporter"
@@ -121,7 +121,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #corp prod postgres-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: corp-deploy
 #  variables:
 #    CHART_NAME: "prometheus-postgres-exporter"
@@ -133,7 +133,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #corp prod redis-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: corp-deploy
 #  variables:
 #    CHART_NAME: "prometheus-redis-exporter"
@@ -147,7 +147,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #univ elasticsearch-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: univ-deploy
 #  variables:
 #    CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -159,7 +159,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #univ ngenix-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: univ-deploy
 #  variables:
 #    CHART_NAME: "prometheus-ngenix-exporter"
@@ -171,7 +171,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #univ prod postgres-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: univ-deploy
 #  variables:
 #    CHART_NAME: "prometheus-postgres-exporter"
@@ -183,7 +183,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #univ stage postgres-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: univ-deploy
 #  variables:
 #    CHART_NAME: "prometheus-postgres-exporter"
@@ -195,7 +195,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #univ prod redis-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: univ-deploy
 #  variables:
 #    CHART_NAME: "prometheus-redis-exporter"
@@ -207,7 +207,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #univ stage redis-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: univ-deploy
 #  variables:
 #    CHART_NAME: "prometheus-redis-exporter"
@@ -221,7 +221,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #sirius elasticsearch-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
 #    CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -233,7 +233,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #sirius ngenix-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
 #    CHART_NAME: "prometheus-ngenix-exporter"
@@ -245,7 +245,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #sirius prod postgres-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
 #    CHART_NAME: "prometheus-postgres-exporter"
@@ -257,7 +257,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #sirius stage postgres-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
 #    CHART_NAME: "prometheus-postgres-exporter"
@@ -269,7 +269,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #sirius prod redis-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
 #    CHART_NAME: "prometheus-redis-exporter"
@@ -281,7 +281,7 @@ cpm-dev elasticsearch-exporter deploy:
 
 #sirius stage redis-exporter deploy:
 #  extends:
-#    - .base-deploy-exporter
+#    - .base-deploy
 #  stage: sirius-deploy
 #  variables:
 #    CHART_NAME: "prometheus-redis-exporter"

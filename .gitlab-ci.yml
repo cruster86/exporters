@@ -15,10 +15,10 @@ stages:
     - echo 'RELEASE =>' ${RELEASE}
   script:
     - set -x
-    - kubectl get ns prometheus-exporters-${CI_ENVIRONMENT_SLUG} || kubectl create ns prometheus-exporters-${CI_ENVIRONMENT_SLUG}
+    - kubectl get ns prometheus-exporters || kubectl create ns prometheus-exporters
     - chmod +x ./scripts/helm_deploy_and_wait.sh
     - RELEASE_NAME="${RELEASE}"
-      NAMESPACE="prometheus-exporters-${CI_ENVIRONMENT_SLUG}"
+      NAMESPACE="prometheus-exporters"
       CHART="deploy/helm/charts/${CHART_NAME}"
       HELM_ARGS="
       -f deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml

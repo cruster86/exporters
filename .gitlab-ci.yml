@@ -274,18 +274,18 @@ sirius ngenix-exporter deploy:
 #  tags:
 #    - kube-ci
 
-#sirius stage postgres-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: sirius-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-postgres-exporter"
-#    CLUSTER_NAME: "sirius"
-#  environment:
-#    name: stage
-#  tags:
-#    - kube-ci
+sirius stage postgres-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: sirius-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-postgres-exporter"
+    CLUSTER_NAME: "sirius"
+  environment:
+    name: stage
+  tags:
+    - kube-ci
 
 #sirius prod redis-exporter deploy:
 #  extends:

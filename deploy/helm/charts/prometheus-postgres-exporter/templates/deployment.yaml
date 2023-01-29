@@ -186,7 +186,7 @@ spec:
       - configMap:
           defaultMode: 420
           {{- if not .Values.config.externalQueries.enabled }}
-          name: {{ .Values.config.externalQueries.configmap }}
+          name: {{ .Release.Name }}
           {{- end }}
         name: queries
 {{- with .Values.extraVolumes }}

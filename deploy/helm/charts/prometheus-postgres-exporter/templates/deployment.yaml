@@ -4,9 +4,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "prometheus-postgres-exporter.name" . }}
+  name: {{ .Release.Name }}
   labels:
-    app: {{ template "prometheus-postgres-exporter.name" . }}
+    app: {{ .Release.Name }}
     chart: {{ template "prometheus-postgres-exporter.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -14,12 +14,12 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "prometheus-postgres-exporter.name" . }}
+      app: {{ .Release.Name }}
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "prometheus-postgres-exporter.name" . }}
+        app: {{ .Release.Name }}
         release: {{ .Release.Name }}
 {{- if .Values.podLabels }}
 {{ toYaml .Values.podLabels | trim | indent 8 }}
@@ -115,7 +115,7 @@ spec:
                 name: {{ .Values.config.datasource.passwordSecret.name }}
                 key: {{ .Values.config.datasource.passwordSecret.key }}
           {{- else }}
-                name: {{ template "prometheus-postgres-exporter.name" . }}
+                name: {{ .Release.Name }}
                 key: data_source_password
           {{- end }}
           {{- end }}

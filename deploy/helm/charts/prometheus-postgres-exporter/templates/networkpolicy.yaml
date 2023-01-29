@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ template "prometheus-postgres-exporter.name" . }}
+  name: {{ .Release.Name }}
   labels:
     {{- if .Values.networkPolicy.labels }}
       {{ toYaml .Values.networkPolicy.labels | indent 4 }}
@@ -10,7 +10,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: {{ template "prometheus-postgres-exporter.name" . }}
+      app: {{ .Release.Name }}
       release: {{ .Release.Name }}
   policyTypes:
     - Ingress

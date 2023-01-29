@@ -6,7 +6,7 @@ metadata:
   labels:
 {{ toYaml .Values.serviceMonitor.labels | indent 4}}
 {{- end }}
-  name: {{ template "prometheus-postgres-exporter.name" . }}
+  name: {{ .Release.Name }}
 {{- if .Values.serviceMonitor.namespace }}
   namespace: {{ .Values.serviceMonitor.namespace }}
 {{- end }}
@@ -30,13 +30,13 @@ spec:
     relabelings:
 {{ toYaml .Values.serviceMonitor.relabelings | nindent 4 }}
 {{- end }}
-  jobLabel: {{ template "prometheus-postgres-exporter.name" . }}
+  jobLabel: {{ .Release.Name }}
   namespaceSelector:
     matchNames:
     - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      app: {{ template "prometheus-postgres-exporter.name" . }}
+      app: {{ .Release.Name }}
       release: {{ .Release.Name }}
 {{- if .Values.serviceMonitor.targetLabels }}
   targetLabels:

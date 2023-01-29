@@ -2,12 +2,12 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ template "prometheus-postgres-exporter.name" . }}
+  name: {{ .Release.Name }}
 {{- with .Values.prometheusRule.namespace }}
   namespace: {{ . }}
 {{- end }}
   labels:
-    app: {{ template "prometheus-postgres-exporter.name" . }}
+    app: {{ .Release.Name }}
     chart: {{ template "prometheus-postgres-exporter.chart" . }}
     release: {{ .Release.Name | quote }}
     heritage: {{ .Release.Service | quote }}

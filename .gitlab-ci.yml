@@ -73,31 +73,31 @@ cpm-yc ngenix-exporter deploy:
   tags:
     - cpm-yac
 
-#cpm-yc redis-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: cpm-yc-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}" 
-#    CHART_NAME: "prometheus-redis-exporter"
-#    CLUSTER_NAME: "cpm"
-#  environment:
-#    name: prod
-#  tags:
-#    - cpm-yac
+cpm-yc redis-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: cpm-yc-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}" 
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "cpm"
+  environment:
+    name: prod
+  tags:
+    - cpm-yac
 
-#cpm-yc postgres-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: cpm-yc-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-postgres-exporter"
-#    CLUSTER_NAME: "cpm"
-#  environment:
-#    name: prod
-#  tags:
-#    - cpm-yac
+cpm-yc postgres-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: cpm-yc-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-postgres-exporter"
+    CLUSTER_NAME: "cpm"
+  environment:
+    name: prod
+  tags:
+    - cpm-yac
 
 ################  CORP  ################
 
@@ -181,57 +181,57 @@ univ ngenix-exporter deploy:
   tags:
     - kube-univ
 
-#univ prod postgres-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: univ-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-postgres-exporter"
-#    CLUSTER_NAME: "univ"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-univ
+univ prod postgres-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: univ-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-postgres-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: prod
+  tags:
+    - kube-univ
 
-#univ stage postgres-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: univ-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-postgres-exporter"
-#    CLUSTER_NAME: "univ"
-#  environment:
-#    name: stage
-#  tags:
-#    - kube-univ
+univ stage postgres-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: univ-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-postgres-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: stage
+  tags:
+    - kube-univ
 
-#univ prod redis-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: univ-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-redis-exporter"
-#    CLUSTER_NAME: "univ"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-univ
+univ prod redis-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: univ-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: prod
+  tags:
+    - kube-univ
 
-#univ stage redis-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: univ-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-redis-exporter"
-#    CLUSTER_NAME: "univ"
-#  environment:
-#    name: stage
-#  tags:
-#    - kube-univ
+univ stage redis-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: univ-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: stage
+  tags:
+    - kube-univ
 
 ################  SIRIUS  ################
 
@@ -261,18 +261,18 @@ sirius ngenix-exporter deploy:
   tags:
     - kube-ci
 
-#sirius prod postgres-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: sirius-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-postgres-exporter"
-#    CLUSTER_NAME: "sirius"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-ci
+sirius prod postgres-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: sirius-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-postgres-exporter"
+    CLUSTER_NAME: "sirius"
+  environment:
+    name: prod
+  tags:
+    - kube-ci
 
 sirius stage postgres-exporter deploy:
   extends:
@@ -300,15 +300,15 @@ sirius stage postgres-exporter deploy:
 #  tags:
 #    - kube-ci
 
-#sirius stage redis-exporter deploy:
-#  extends:
-#    - .base-deploy
-#  stage: sirius-deploy
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-redis-exporter"
-#    CLUSTER_NAME: "sirius"
-#  environment:
-#    name: stage
-#  tags:
-#    - kube-ci
+sirius stage redis-exporter deploy:
+  extends:
+    - .base-deploy
+  stage: sirius-deploy
+  variables:
+    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+    CHART_NAME: "prometheus-redis-exporter"
+    CLUSTER_NAME: "sirius"
+  environment:
+    name: stage
+  tags:
+    - kube-ci

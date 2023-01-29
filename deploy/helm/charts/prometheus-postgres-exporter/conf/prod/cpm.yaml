@@ -6,13 +6,13 @@ config:
   autoDiscoverDatabases: false
   constantLabels: {}
   datasource:
-    database: ''
+    database: cheops
     host: c-c9q3ngtav6krvs71esv1.ro.mdb.yandexcloud.net
     password: hHLaqFbmkmkBAYAPy5PhFXYB24acHDGH8TB5YE7o
     passwordSecret: {}
     port: '6432'
     sslmode: disable
-    user: cheops
+    user: cheops_prod
   datasourceSecret: {}
   disableDefaultMetrics: false
   disableSettingsMetrics: false

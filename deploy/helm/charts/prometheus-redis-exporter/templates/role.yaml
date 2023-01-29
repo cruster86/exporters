@@ -2,9 +2,9 @@
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
-  name: {{ template "prometheus-redis-exporter.name" . }}
+  name: {{ .Release.Name }}
   labels:
-    app: {{ template "prometheus-redis-exporter.name" . }}
+    app: {{ .Release.Name }}
     chart: {{ template "prometheus-redis-exporter.chart" . }}
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
@@ -13,6 +13,6 @@ rules:
 - apiGroups:      ['extensions']
   resources:      ['podsecuritypolicies']
   verbs:          ['use']
-  resourceNames:  [{{ template "prometheus-redis-exporter.name" . }}]
+  resourceNames:  [{{ .Release.Name }}]
 {{- end }}
 {{- end }}

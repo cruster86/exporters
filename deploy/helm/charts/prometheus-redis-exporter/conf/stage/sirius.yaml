@@ -3,7 +3,7 @@ affinity: {}
 nodeSelector:
   node-role: stage
 
-redisAddress: 'redis://10.43.162.200:6379'
+redisAddress: 'redis://redis-test-redis-ha.redis-test.svc:6379'
 
 serviceMonitor:
   enabled: true

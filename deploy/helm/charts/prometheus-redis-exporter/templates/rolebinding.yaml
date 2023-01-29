@@ -3,16 +3,16 @@
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: {{ template "prometheus-redis-exporter.name" . }}
+  name: {{ .Release.Name }}
   labels:
-    app: {{ template "prometheus-redis-exporter.name" . }}
+    app: {{ .Release.Name }}
     chart: {{ template "prometheus-redis-exporter.chart" . }}
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{ template "prometheus-redis-exporter.name" . }}
+  name: {{ .Release.Name }}
 subjects:
 - kind: ServiceAccount
   name: {{ template "prometheus-redis-exporter.serviceAccountName" . }}

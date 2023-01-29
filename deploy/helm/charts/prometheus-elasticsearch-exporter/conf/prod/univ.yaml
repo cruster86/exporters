@@ -69,7 +69,7 @@ serviceMonitor:
   metricRelabelings:
     - action: keep
       regex: >-
-        (elasticsearch_filesystem_data_available_bytes|elasticsearch_filesystem_data_size_bytes|elasticsearch_cluster_health_status|elasticsearch_cluster_health_number_of_nodes|elasticsearch_cluster_health_unassigned_shards|elasticsearch_cluster_health_number_of_pending_tasks|elasticsearch_indices_docs)
+        (elasticsearch_filesystem_data_available_bytes|elasticsearch_filesystem_data_size_bytes|elasticsearch_cluster_health_status|elasticsearch_cluster_health_number_of_nodes|elasticsearch_cluster_health_unassigned_shards|elasticsearch_cluster_health_number_of_pending_tasks|elasticsearch_indices_docs|elasticsearch_process_cpu_percent|elasticsearch_jvm_memory_used_bytes|elasticsearch_transport_tx_size_bytes_total|elasticsearch_transport_rx_size_bytes_total|elasticsearch_indices_indexing_index_total|elasticsearch_indices_store_size_bytes_total|elasticsearch_indices_search_query_time_seconds|elasticsearch_indices_indexing_index_time_seconds_total)
       sourceLabels:
         - __name__
   relabelings: []

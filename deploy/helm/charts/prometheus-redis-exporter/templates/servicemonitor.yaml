@@ -44,9 +44,6 @@ spec:
       - targetLabel: {{ $targetLabel | quote }}
         replacement: {{ $replacement | quote }}
         {{- end }}
-{{- if concat (.additionalRelabeling | default list) $.Values.serviceMonitor.additionalRelabeling }}
-{{ toYaml (concat (.additionalRelabeling | default list) $.Values.serviceMonitor.additionalRelabeling) | indent 6 }}
-{{- end }}
 {{- end }}
 {{- else }}
   - port: {{ .Values.service.portName }}

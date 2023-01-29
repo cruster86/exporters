@@ -95,5 +95,5 @@
 
 <details><summary>Настройки:</summary>
 
-  - Настройка параметров: `deploy/helm/charts/${CHART_NAME}/conf/${CLUSTER_NAME}-${CI_ENVIRONMENT_SLUG}.yaml`
+  - Настройка параметров: `deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml`
 </details>

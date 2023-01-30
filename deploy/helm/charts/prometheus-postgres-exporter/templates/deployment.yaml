@@ -50,6 +50,7 @@ spec:
           args:
           - "--extend.query-path=/etc/config.yaml"
           - "--web.listen-address=:{{ .Values.service.targetPort }}"
+          - "--log.level=debug"
           {{- if .Values.config.disableCollectorDatabase }}
           - "--collector.database=false"
           {{- end }}

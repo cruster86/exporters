@@ -7,7 +7,7 @@ config:
   constantLabels: {}
   datasource:
     database: cheops
-    host: c-c9q3ngtav6krvs71esv1.ro.mdb.yandexcloud.net
+    host: c-c9q3ngtav6krvs71esv1.rw.mdb.yandexcloud.net
     password: ''
     passwordSecret: {}
     port: '6432'

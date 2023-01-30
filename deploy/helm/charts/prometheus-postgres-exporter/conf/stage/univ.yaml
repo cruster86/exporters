@@ -14,13 +14,13 @@ config:
   autoDiscoverDatabases: false
   constantLabels: {}
   datasource:
-    database: postgres
+    database: cheops
     host: univ-postgres-stage.postgres-stage.svc
     password: ''
     passwordSecret: {}
     port: '5432'
     sslmode: disable
-    user: postgres
+    user: cheops_dev
   datasourceSecret: {}
   disableDefaultMetrics: false
   disableSettingsMetrics: false

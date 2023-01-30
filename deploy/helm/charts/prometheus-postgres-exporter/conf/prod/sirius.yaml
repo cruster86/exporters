@@ -14,7 +14,7 @@ config:
   autoDiscoverDatabases: false
   constantLabels: {}
   datasource:
-    database: ''
+    database: cheops
     host: cheops-postgres-cluster.postgres-failover.svc
     password: ''
     passwordSecret: {}

@@ -14,7 +14,7 @@ config:
   autoDiscoverDatabases: false
   constantLabels: {}
   datasource:
-    database: ''
+    database: postgres
     host: corp-postgres.postgres-prod.svc
     password: ''
     passwordSecret: {}

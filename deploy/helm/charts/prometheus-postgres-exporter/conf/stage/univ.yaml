@@ -14,7 +14,7 @@ config:
   autoDiscoverDatabases: false
   constantLabels: {}
   datasource:
-    database: ''
+    database: postgres
     host: univ-postgres-stage.postgres-stage.svc
     password: ''
     passwordSecret: {}

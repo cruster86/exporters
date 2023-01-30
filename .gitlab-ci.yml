@@ -23,7 +23,7 @@ stages:
       CHART="deploy/helm/charts/${CHART_NAME}"
       HELM_ARGS="
       -f deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml
-      -f {!access_config}
+      -f ${!cyrus_config}
       --set global.yc_secret="${YC_REGISTRY}"
       --set global.gitlab_secret="${GITLAB_REGISTRY}"
       --set global.ngenix_user_login="${NGENIX_USER_LOGIN}"

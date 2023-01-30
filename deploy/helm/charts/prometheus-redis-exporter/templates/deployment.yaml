@@ -97,11 +97,11 @@ spec:
                   name: {{ .Values.auth.secret.name }}
                   key: {{ .Values.auth.secret.key }}
             {{- else }}
-              value: {{ .Values.auth.redisPassword }}
+              value: {{ .Values.redisPassword }}
             {{- end }}
-            {{- if .Values.auth.redisUser }}
+            {{- if .Values.redisUser }}
             - name: REDIS_USER
-              value: {{ .Values.auth.redisUser }}
+              value: {{ .Values.redisUser }}
             {{- end }}
             {{- end }}
           {{- end }}

@@ -31,6 +31,7 @@ extraVolumes: []
 
 nodeSelector:
   node-role: monitoring
+
 podAnnotations: {}
 podLabels: {}
 podSecurityPolicies:

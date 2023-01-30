@@ -1,7 +1,7 @@
 affinity: {}
 
 nodeSelector:
-  node-role: redis
+  node-role: monitoring
 
 redisAddress: 'redis://10.96.233.196:6379'
 

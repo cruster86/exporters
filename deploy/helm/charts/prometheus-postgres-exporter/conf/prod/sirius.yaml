@@ -16,7 +16,7 @@ config:
   datasource:
     database: ''
     host: cheops-postgres-cluster.postgres-failover.svc
-    password: ZGQ5LSKZaeNHeau8dgL4mN4LLhGEAFXH
+    password: ''
     passwordSecret: {}
     port: '5432'
     sslmode: disable

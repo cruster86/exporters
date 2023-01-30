@@ -16,7 +16,7 @@ config:
   datasource:
     database: ''
     host: univ-postgres-cluster.postgres-prod.svc
-    password: 8qgLS0BS6vv24F66xWonYUpHG3is7lI8xm2o6bbJEol5T8zaBY8Kxz7GmVBxdyMd
+    password: ''
     passwordSecret: {}
     port: '5432'
     sslmode: disable

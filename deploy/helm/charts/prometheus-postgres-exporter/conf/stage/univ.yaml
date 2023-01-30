@@ -16,7 +16,7 @@ config:
   datasource:
     database: ''
     host: univ-postgres-stage.postgres-stage.svc
-    password: 6Txzt8jLp1Yy7UOJqNxuQUvaLSjM2zrqi501M0ob5rvkEIvotSzgTmiVqGJypK9J
+    password: ''
     passwordSecret: {}
     port: '5432'
     sslmode: disable

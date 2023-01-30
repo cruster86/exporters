@@ -16,7 +16,7 @@ config:
   datasource:
     database: ''
     host: corp-postgres.postgres-prod.svc
-    password: z1CtLl7zCbbpAQmZxe63HEUspspp2vb4LQhErIxKPniwBoS8FzBUnc1PWQpmju8m
+    password: ''
     passwordSecret: {}
     port: '5432'
     sslmode: disable

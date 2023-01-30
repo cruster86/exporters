@@ -16,12 +16,14 @@ stages:
   script:
     - set -x
     - kubectl get ns prometheus-exporters || kubectl create ns prometheus-exporters
+    - export access_config="${CLUSTER_NAME}_access_config"
     - chmod +x ./scripts/helm_deploy_and_wait.sh
     - RELEASE_NAME="${RELEASE}"
       NAMESPACE="prometheus-exporters"
       CHART="deploy/helm/charts/${CHART_NAME}"
       HELM_ARGS="
       -f deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml
+      -f {!access_config}
       --set global.yc_secret="${YC_REGISTRY}"
       --set global.gitlab_secret="${GITLAB_REGISTRY}"
       --set global.ngenix_user_login="${NGENIX_USER_LOGIN}"

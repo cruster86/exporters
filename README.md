@@ -94,6 +94,6 @@
 </details>
 
 <details><summary>Настройки:</summary>
-
+  - Общий неймспейс: prometheus-exporters
   - Настройка параметров: `deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml`
 </details>

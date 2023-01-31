@@ -94,6 +94,13 @@
 </details>
 
 <details><summary>Настройки:</summary>
+
+  - Версии образов:
+    - prometheus-postgres-exporter: v0.9.0
+    - prometheus-redis-exporter: v1.45.0
+    - prometheus-elasticsearch-exporter: v1.5.0
+    - prometheus-ngenix-exporter: v0.15 (latest)
+
   - Общий неймспейс: prometheus-exporters
   - Настройка параметров: `deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml`
 </details>

@@ -6,6 +6,8 @@
 
 Конфигурация деплоя находится в: `.gitlab-ci.yaml`
 
+---
+
 Upstream проекты:
 
   - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-postgres-exporter

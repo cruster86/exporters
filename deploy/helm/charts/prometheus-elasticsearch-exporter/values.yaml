@@ -19,6 +19,8 @@ podSecurityContext:
     type: "RuntimeDefault"
 
 securityContext:
+  enabled: true
+  runAsUser: 1000
   allowPrivilegeEscalation: false
   capabilities:
     drop:

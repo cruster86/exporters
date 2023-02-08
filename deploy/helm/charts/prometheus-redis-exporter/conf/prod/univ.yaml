@@ -1,7 +1,7 @@
 nodeSelector:
   node-role: redis
 
-redisAddress: 'redis://10.43.3.126:6379'
+redisAddress: 'redis://redis-prod-redis-ha-haproxy.redis-prod.svc:6379'
 
 serviceMonitor:
   enabled: true

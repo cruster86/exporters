@@ -41,7 +41,7 @@ cpm-dev elasticsearch-exporter deploy:
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
-    CLUSTER_NAME: "cpm-dev"
+    CLUSTER_NAME: "cpm_dev"
   environment:
     name: stage
   tags:

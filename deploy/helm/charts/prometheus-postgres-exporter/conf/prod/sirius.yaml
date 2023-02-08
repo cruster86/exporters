@@ -8,7 +8,10 @@ affinity:
               values:
                 - postgres-failover
 
-annotations: {}
+tolerations:
+  - key: node-role
+    operator: Equal
+    value: postgres-failover
 
 config:
   autoDiscoverDatabases: false
@@ -307,50 +310,7 @@ config:
             usage: "HISTOGRAM"
             description: "Idle time of server processes"
 
-extraContainers: null
-extraVolumeMounts: null
-extraVolumes: null
-
-initContainers: null
-livenessProbe:
-  initialDelaySeconds: 0
-  timeoutSeconds: 1
-nodeSelector: {}
-podLabels: {}
-prometheusRule:
-  additionalLabels: {}
-  enabled: false
-  namespace: ''
-  rules: null
-rbac:
-  create: true
-  pspEnabled: true
-readinessProbe:
-  initialDelaySeconds: 0
-  timeoutSeconds: 1
-replicaCount: 1
-resources: {}
-securityContext: {}
-
-service:
-  annotations: {}
-  labels: {}
-  name: http
-  port: 80
-  targetPort: 9187
-  type: ClusterIP
-
-serviceAccount:
-  annotations: {}
-  create: true
-  name: null
-
 serviceMonitor:
   enabled: true
   lables:
     release: rancher-monitoring
-
-tolerations:
-  - key: node-role
-    operator: Equal
-    value: postgres-failover

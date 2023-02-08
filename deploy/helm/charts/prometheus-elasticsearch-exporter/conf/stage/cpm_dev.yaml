@@ -1,14 +1,3 @@
-#affinity: {}
-
-#deployment:
-#  annotations: {}
-
-#dnsConfig: {}
-
-#env: {}
-
-#envFromSecret: ''
-
 es:
   all: true
   cluster_settings: false
@@ -30,56 +19,8 @@ es:
   timeout: 60s
   uri: 'http://elasticsearch-master.logging.svc:9200'
 
-#extraArgs: []
-
-#extraEnvSecrets: {}
-
-#extraVolumeMounts: []
-
-#extraVolumes: []
-
 nodeSelector:
   node-role: monitoring
-
-#podAnnotations: {}
-
-#podLabels: {}
-
-#podSecurityPolicies:
-#  enabled: false
-
-#priorityClassName: ''
-
-#prometheusRule:
-#  enabled: false
-#  labels: {}
-#  rules: []
-
-#replicaCount: 1
-
-#resources: {}
-
-#restartPolicy: Always
-
-#secretMounts: []
-
-#securityContext:
-#  enabled: true
-#  runAsUser: 1000
-
-#service:
-#  annotations: {}
-#  httpPort: 9108
-#  labels: {}
-#  metricsPort:
-#    name: http
-#  type: ClusterIP
-
-#serviceAccount:
-#  annotations: {}
-#  automountServiceAccountToken: true
-#  create: false
-#  name: default
 
 serviceMonitor:
   enabled: true
@@ -100,8 +41,3 @@ serviceMonitor:
   scrapeTimeout: 60s
   targetLabels: []
   namespace: prometheus-exporters
-
-#tolerations: []
-
-#web:
-#  path: /metrics

@@ -8,7 +8,10 @@ affinity:
               values:
                 - postgres
 
-annotations: {}
+tolerations:
+  - key: node-role
+    operator: Equal
+    value: postgres
 
 config:
   autoDiscoverDatabases: false
@@ -307,44 +310,6 @@ config:
             usage: "HISTOGRAM"
             description: "Idle time of server processes"
 
-extraContainers: null
-extraVolumeMounts: null
-extraVolumes: null
-
-initContainers: null
-livenessProbe:
-  initialDelaySeconds: 0
-  timeoutSeconds: 1
-nodeSelector: {}
-podLabels: {}
-prometheusRule:
-  additionalLabels: {}
-  enabled: false
-  namespace: ''
-  rules: null
-rbac:
-  create: true
-  pspEnabled: true
-readinessProbe:
-  initialDelaySeconds: 0
-  timeoutSeconds: 1
-replicaCount: 1
-resources: {}
-securityContext: {}
-
-service:
-  annotations: {}
-  labels: {}
-  name: http
-  port: 80
-  targetPort: 9187
-  type: ClusterIP
-
-serviceAccount:
-  annotations: {}
-  create: true
-  name: null
-
 serviceMonitor:
   enabled: true
   lables:
@@ -355,9 +320,4 @@ serviceMonitor:
         (pg_up|pg_postmaster_start_time_seconds|pg_exporter_last_scrape_error|pg_exporter_last_scrape_error|pg_stat_activity_count|pg_settings_max_connections|pg_stat_activity_count|pg_stat_database_xact_commit|node_filesystem_avail_bytes|node_filesystem_size_bytes|container_memory_working_set_bytes|kube_pod_container_resource_limits|container_cpu_usage_seconds_total|pg_stat_bgwriter_checkpoint_write_time|pg_locks_count|pg_stat_database_temp_bytes|pg_stat_bgwriter_buffers_backend|pg_stat_bgwriter_buffers_alloc|pg_stat_bgwriter_buffers_backend_fsync|pg_stat_bgwriter_buffers_checkpoint|pg_stat_bgwriter_buffers_clean|pg_stat_database_conflicts|pg_stat_database_deadlocks|pg_stat_activity_count|pg_stat_database_xact_commit|pg_stat_database_xact_rollback|pg_stat_database_tup_fetched|pg_stat_database_tup_returned|pg_stat_database_tup_inserted|pg_stat_database_tup_updated|pg_stat_database_tup_deleted|pg_stat_activity_max_tx_duration|pg_stat_database_blks_hit|pg_stat_database_blks_read|pg_static|pg_settings_max_connections|pg_settings_shared_buffers_bytes|pg_settings_effective_cache_size_bytes|pg_settings_maintenance_work_mem_bytes|pg_settings_work_mem_bytes|pg_settings_random_page_cost|pg_settings_seq_page_cost|pg_settings_max_worker_processes|pg_settings_max_parallel_workers|pg_settings_max_wal_size_bytes)
       sourceLabels:
         - __name__
-
-tolerations:
-  - key: node-role
-    operator: Equal
-    value: postgres
 

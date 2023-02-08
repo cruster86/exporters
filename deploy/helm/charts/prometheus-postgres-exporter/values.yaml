@@ -15,6 +15,7 @@ service:
   labels: {}
   annotations: {}
 
+## When set true then use a ServiceMonitor to configure scraping
 serviceMonitor:
   enabled: false
 
@@ -27,20 +28,32 @@ prometheusRule:
 resources: {}
 
 rbac:
+  # Specifies whether RBAC resources should be created
   create: true
+  # Specifies whether a PodSecurityPolicy should be created
   pspEnabled: true
 
 serviceAccount:
+  # Specifies whether a ServiceAccount should be created
   create: true
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
   name:
+  # Add annotations to the ServiceAccount, useful for EKS IAM Roles for Service Accounts or Google Workload Identity.
   annotations: {}
 
+# Add a default ingress to allow namespace access to service.targetPort
+# Helpful if other NetworkPolicies are configured in the namespace
 networkPolicy:
+  # Specifies whether a NetworkPolicy should be created
   enabled: false
+  # Set labels for the NetworkPolicy
   labels: {}
 
+# The securityContext of the pod.
 podSecurityContext: {}
 
+# The securityContext of the container.
 securityContext: {}
 
 hostAliases: []
@@ -348,6 +361,7 @@ annotations: {}
 
 podLabels: {}
 
+# Configurable health checks
 livenessProbe:
   initialDelaySeconds: 0
   timeoutSeconds: 1
@@ -356,14 +370,19 @@ readinessProbe:
   initialDelaySeconds: 0
   timeoutSeconds: 1
 
+# ExtraEnvs
 extraEnvs: []
 
+# Init containers, e. g. for secrets creation before the exporter
 initContainers: []
 
+# Additional sidecar containers, e. g. for a database proxy, such as Google's cloudsql-proxy
 extraContainers: []
 
+# Additional volumes, e. g. for secrets used in an extraContainer
 extraVolumes: []
 
+# Additional volume mounts
 extraVolumeMounts: []
 
 podDisruptionBudget:

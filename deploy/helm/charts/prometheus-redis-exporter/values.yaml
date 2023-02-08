@@ -1,9 +1,14 @@
 rbac:
+  # Specifies whether RBAC resources should be created
   create: true
+  # Specifies whether a PodSecurityPolicy should be created
   pspEnabled: true
 
 serviceAccount:
+  # Specifies whether a ServiceAccount should be created
   create: true
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
   name: null
 
 replicaCount: 1
@@ -21,6 +26,7 @@ customLabels: {}
 
 securityContext: {}
 
+# Additional Environment variables
 env: {}
 
 service:
@@ -40,41 +46,53 @@ affinity: {}
 
 redisAddress: redis://myredis:6379
 
+# deployment additional annotations and labels
 annotations: {}
-
 labels: {}
 
 redisAddressConfig:
+  # Use config from configmap
   enabled: false
+  # Use existing configmap (ignores redisAddress)
   configmap:
     name: ""
     key: ""
 
 redisTlsConfig:
+  # Use TLS configuration
   enabled: false
+  # Whether to to skip TLS verification
   skipTlsVerification: false
+  # All secrets key about TLS config will be mounted into this path
   mountPath: /tls
+
+  # REDIS_EXPORTER_TLS_CA_CERT_FILE will be set to /tls/tls-ca-cert.crt
   caCertFile:
     secret:
       name: ""
       key: ""
+  # REDIS_EXPORTER_TLS_CLIENT_KEY_FILE  will be set to /tls/tls-client-key.key
   clientKeyFile:
     secret:
       name: ""
       key: ""
+  # REDIS_EXPORTER_TLS_CLIENT_CERT_FILE will be set to /tls/tls-client-cert.crt
   clientCertFile:
     secret:
       name: ""
       key: ""
+  # REDIS_EXPORTER_TLS_SERVER_KEY_FILE will be set to /tls/tls-server-key.key
   serverKeyFile:
     secret:
       name: ""
       key: ""
+  # REDIS_EXPORTER_TLS_SERVER_CERT_FILE will be set to /tls/tls-server-cert.crt
   serverCertFile:
     secret:
       name: ""
       key: ""
 
+# When set true then use a ServiceMonitor to configure scraping
 serviceMonitor:
   enabled: false
   multipleTarget: false
@@ -82,6 +100,7 @@ serviceMonitor:
   additionalMetricsRelabels: {}
   additionalRelabeling: []
 
+## Custom PrometheusRules to be defined
 prometheusRule:
   enabled: false
   additionalLabels: {}
@@ -89,13 +108,23 @@ prometheusRule:
   rules: []
 
 auth:
+  # Use password authentication
   enabled: false
+  # Use existing secret (ignores redisPassword)
   secret:
     name: ""
     key: ""
+  # Redis password (when not stored in a secret)
   redisPassword: ""
+  # Redis user (version 6.X and above)
   redisUser: ""
+  # Redis password file (e.g., https://github.com/oliver006/redis_exporter/blob/v1.27.0/contrib/sample-pwd-file.json)
+  # secret (useful for multiple redis instances with different passwords). If secret name and key are set
+  # this will ignore the single password auth.secret.*
   redisPasswordFile:
+    # The secret key will be mounted into this path as a file
+    # e.g., if secret key is pass.json, the env variable
+    # REDIS_PASSWORD_FILE will be set to /auth/pass.json
     mountPath: /auth
     secret:
       name: ""

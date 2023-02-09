@@ -1,3 +1,4 @@
+## number of exporter instances
 replicaCount: 1
 
 image:
@@ -7,6 +8,7 @@ image:
   pullSecret:
     - gitlab-registry
 
+# Create a service
 service:
   type: ClusterIP
   port: 80
@@ -20,6 +22,7 @@ serviceMonitor:
   enabled: false
 
 prometheusRule:
+  ## If true, a PrometheusRule CRD is created for a prometheus operator
   enabled: false
   additionalLabels: {}
   namespace: ""
@@ -33,6 +36,7 @@ rbac:
   # Specifies whether a PodSecurityPolicy should be created
   pspEnabled: true
 
+# Create a serviceaccount
 serviceAccount:
   # Specifies whether a ServiceAccount should be created
   create: true

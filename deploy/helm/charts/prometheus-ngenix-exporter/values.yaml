@@ -1,11 +1,18 @@
-image: registry.sirius.online/infra/exporters/ngenix-exporter
-imageTag: latest
-imagePullSecrets:
-  - name: gitlab-registry
+# Политика загрузки образа
 imagePullPolicy: Always
 
+# Имя образа и тэг-версия
+image: registry.sirius.online/infra/exporters/ngenix-exporter
+imageTag: latest
+
+# Секреты для доступа к реджисти с образом
+imagePullSecrets:
+  - name: gitlab-registry
+
+# ID конфигурации Ngenix
 config_ids: {}
 
+# Выделяемые ресурсы
 resources:
   requests:
     memory: 100Mi
@@ -13,17 +20,21 @@ resources:
   limits:
     memory: 300Mi
 
+# Механизм выбора нод для установки
 nodeSelector:
   node-role: monitoring
 
+# Настройка невосприимчивости к теинтам нодж
 tolerations:
   - effect: NoSchedule
     key: node-role
     operator: Equal
     value: monitoring
 
+# Настройки сервиса
 service:
   type: ClusterIP
 
+# Настройки сервиссмонитора
 servicemonitor:
   release: rancher-monitoring

@@ -1,9 +1,8 @@
 stages:
-  - cpm-dev-deploy
-  - corp-deploy
-  - univ-deploy
-  - cpm-yc-deploy
-  - sirius-deploy
+  - cpm
+  - corp
+  - univ
+  - sirius
 
 .base-deploy:
   when: manual
@@ -14,7 +13,6 @@ stages:
     - echo 'CHART_NAME =>' ${CHART_NAME}
     - echo 'RELEASE =>' ${RELEASE}
   script:
-    - set -x
     - kubectl get ns prometheus-exporters || kubectl create ns prometheus-exporters
     - export access_config="${CLUSTER_NAME}_access_config"
     - chmod +x ./scripts/helm_deploy_and_wait.sh
@@ -34,10 +32,10 @@ stages:
 
 ################  CPM-DEV  ################
 
-cpm-dev elasticsearch-exporter deploy:
+cpm elasticsearch-exporter stage:
   extends:
     - .base-deploy
-  stage: cpm-dev-deploy
+  stage: cpm
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -49,10 +47,10 @@ cpm-dev elasticsearch-exporter deploy:
 
 ################  CPM-YC  ################
 
-cpm-yc elasticsearch-exporter deploy:
+cpm elasticsearch-exporter prod:
   extends:
     - .base-deploy
-  stage: cpm-yc-deploy
+  stage: cpm
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -62,10 +60,10 @@ cpm-yc elasticsearch-exporter deploy:
   tags:
     - cpm-yac
 
-cpm-yc ngenix-exporter deploy:
+cpm ngenix-exporter prod:
   extends:
     - .base-deploy
-  stage: cpm-yc-deploy
+  stage: cpm
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-ngenix-exporter"
@@ -75,10 +73,10 @@ cpm-yc ngenix-exporter deploy:
   tags:
     - cpm-yac
 
-cpm-yc redis-exporter deploy:
+cpm redis-exporter prod:
   extends:
     - .base-deploy
-  stage: cpm-yc-deploy
+  stage: cpm
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}" 
     CHART_NAME: "prometheus-redis-exporter"
@@ -88,10 +86,10 @@ cpm-yc redis-exporter deploy:
   tags:
     - cpm-yac
 
-cpm-yc postgres-exporter deploy:
+cpm postgres-exporter prod:
   extends:
     - .base-deploy
-  stage: cpm-yc-deploy
+  stage: cpm
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
     CHART_NAME: "prometheus-postgres-exporter"
@@ -103,10 +101,10 @@ cpm-yc postgres-exporter deploy:
 
 ################  CORP  ################
 
-corp elasticsearch-exporter deploy:
+corp elasticsearch-exporter prod:
   extends:
     - .base-deploy
-  stage: corp-deploy
+  stage: corp
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -116,10 +114,10 @@ corp elasticsearch-exporter deploy:
   tags:
     - kube-corp
 
-corp ngenix-exporter deploy:
+corp ngenix-exporter prod:
   extends:
     - .base-deploy
-  stage: corp-deploy
+  stage: corp
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-ngenix-exporter"
@@ -129,10 +127,10 @@ corp ngenix-exporter deploy:
   tags:
     - kube-corp
 
-corp prod postgres-exporter deploy:
+corp postgres-exporter prod:
   extends:
     - .base-deploy
-  stage: corp-deploy
+  stage: corp
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
     CHART_NAME: "prometheus-postgres-exporter"
@@ -142,10 +140,10 @@ corp prod postgres-exporter deploy:
   tags:
     - kube-corp
 
-corp prod redis-exporter deploy:
+corp redis-exporter prod:
   extends:
     - .base-deploy
-  stage: corp-deploy
+  stage: corp
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
     CHART_NAME: "prometheus-redis-exporter"
@@ -157,10 +155,10 @@ corp prod redis-exporter deploy:
 
 #################  UNIV  ################
 
-univ elasticsearch-exporter deploy:
+univ elasticsearch-exporter prod:
   extends:
     - .base-deploy
-  stage: univ-deploy
+  stage: univ
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -170,10 +168,10 @@ univ elasticsearch-exporter deploy:
   tags:
     - kube-univ
 
-univ ngenix-exporter deploy:
+univ ngenix-exporter prod:
   extends:
     - .base-deploy
-  stage: univ-deploy
+  stage: univ
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-ngenix-exporter"
@@ -183,10 +181,10 @@ univ ngenix-exporter deploy:
   tags:
     - kube-univ
 
-univ prod postgres-exporter deploy:
+univ postgres-exporter prod:
   extends:
     - .base-deploy
-  stage: univ-deploy
+  stage: univ
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
     CHART_NAME: "prometheus-postgres-exporter"
@@ -196,10 +194,10 @@ univ prod postgres-exporter deploy:
   tags:
     - kube-univ
 
-univ stage postgres-exporter deploy:
+univ postgres-exporter stage:
   extends:
     - .base-deploy
-  stage: univ-deploy
+  stage: univ
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
     CHART_NAME: "prometheus-postgres-exporter"
@@ -209,10 +207,10 @@ univ stage postgres-exporter deploy:
   tags:
     - kube-univ
 
-univ prod redis-exporter deploy:
+univ redis-exporter prod:
   extends:
     - .base-deploy
-  stage: univ-deploy
+  stage: univ
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
     CHART_NAME: "prometheus-redis-exporter"
@@ -222,10 +220,10 @@ univ prod redis-exporter deploy:
   tags:
     - kube-univ
 
-univ stage redis-exporter deploy:
+univ redis-exporter stage:
   extends:
     - .base-deploy
-  stage: univ-deploy
+  stage: univ
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
     CHART_NAME: "prometheus-redis-exporter"
@@ -237,10 +235,10 @@ univ stage redis-exporter deploy:
 
 ################  SIRIUS  ################
 
-sirius elasticsearch-exporter deploy:
+sirius elasticsearch-exporter prod:
   extends:
     - .base-deploy
-  stage: sirius-deploy
+  stage: sirius
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-elasticsearch-exporter"
@@ -250,10 +248,10 @@ sirius elasticsearch-exporter deploy:
   tags:
     - kube-ci
 
-sirius ngenix-exporter deploy:
+sirius ngenix-exporter prod:
   extends:
     - .base-deploy
-  stage: sirius-deploy
+  stage: sirius
   variables:
     RELEASE: "${CHART_NAME}"
     CHART_NAME: "prometheus-ngenix-exporter"
@@ -263,10 +261,10 @@ sirius ngenix-exporter deploy:
   tags:
     - kube-ci
 
-sirius prod postgres-exporter deploy:
+sirius postgres-exporter prod:
   extends:
     - .base-deploy
-  stage: sirius-deploy
+  stage: sirius
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
     CHART_NAME: "prometheus-postgres-exporter"
@@ -276,10 +274,10 @@ sirius prod postgres-exporter deploy:
   tags:
     - kube-ci
 
-sirius stage postgres-exporter deploy:
+sirius postgres-exporter stage:
   extends:
     - .base-deploy
-  stage: sirius-deploy
+  stage: sirius
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
     CHART_NAME: "prometheus-postgres-exporter"
@@ -289,10 +287,10 @@ sirius stage postgres-exporter deploy:
   tags:
     - kube-ci
 
-#sirius prod redis-exporter deploy:
+#sirius redis-exporter prod:
 #  extends:
 #    - .base-deploy
-#  stage: sirius-deploy
+#  stage: sirius
 #  variables:
 #    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-redis-exporter"
@@ -302,10 +300,10 @@ sirius stage postgres-exporter deploy:
 #  tags:
 #    - kube-ci
 
-#sirius stage redis-exporter deploy:
+#sirius redis-exporter stage:
 #  extends:
 #    - .base-deploy
-#  stage: sirius-deploy
+#  stage: sirius
 #  variables:
 #    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
 #    CHART_NAME: "prometheus-redis-exporter"

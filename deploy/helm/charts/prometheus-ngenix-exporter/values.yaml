@@ -3,7 +3,8 @@ imagePullPolicy: Always
 
 # Имя образа и тэг-версия
 image: registry.sirius.online/infra/exporters/ngenix-exporter
-imageTag: latest
+imageTag: v0.15
+#imageTag: latest
 
 # Секреты для доступа к реджисти с образом
 imagePullSecrets:

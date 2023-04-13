@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: postfix-exporter
+  name: postfix-exporter
+  namespace: cattle-prometheus
+spec:
+  ports:
+  - name: metrics
+    port: 9154
+    protocol: TCP
+    targetPort: 9154
+  sessionAffinity: None
+  type: ClusterIP

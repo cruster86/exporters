@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: postfix-exporter
+  name: postfix-exporter
+  namespace: cattle-prometheus
+spec:
+  endpoints:
+  - interval: 60s
+    metricRelabelings:
+    - action: keep
+      regex: postfix.*
+      sourceLabels:
+      - __name__
+    path: /metrics
+    port: metrics
+    scheme: http
+  namespaceSelector:
+    matchNames:
+    - cattle-prometheus
+  selector:
+    matchLabels:
+      app: postfix-exporter

@@ -1,1 +1,7 @@
-
+apiVersion: v1
+name: prometheus-postfix-exporter
+description: |
+  Prometheus-postfix-exporter
+type: application
+version: 1.0
+appVersion: 0.1

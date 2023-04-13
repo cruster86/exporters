@@ -2,9 +2,9 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    app: postfix-exporter
-  name: postfix-exporter
-  namespace: cattle-prometheus
+    {{- include "prometheus-postfix-exporter.labels" . | nindent 4 }}
+  name: {{ template "prometheus-postfix-exporter.name" . }}
+  namespace: {{ .Release.Namespace }}
 spec:
   endpoints:
   - interval: 60s
@@ -18,7 +18,7 @@ spec:
     scheme: http
   namespaceSelector:
     matchNames:
-    - cattle-prometheus
+    - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      app: postfix-exporter
+      {{- include "prometheus-postfix-exporter.selectorLabels" . | nindent 6 }}

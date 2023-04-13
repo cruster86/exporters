@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Endpoints
 metadata:
   labels:
-    app: postfix-exporter
-  name: postfix-exporter
-  namespace: cattle-prometheus
+    {{- include "prometheus-postfix-exporter.labels" . | nindent 4 }}
+  name: {{ template "prometheus-postfix-exporter.name" . }}
+  namespace: {{ .Release.Namespace }}
 subsets:
 - addresses:
-  - ip: 192.168.88.2
-    nodeName: mail-sirius
+  - ip: {{ .Values.endpoints.ip }}
+    nodeName: {{ .Values.endpoints.node }}
   ports:
-  - name: metrics
-    port: 9154
+  - name: {{ .Values.service.name }}
+    port: {{ .Values.service.port }}
     protocol: TCP

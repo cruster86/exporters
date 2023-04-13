@@ -235,6 +235,19 @@ univ redis-exporter stage:
 
 ################  SIRIUS  ################
 
+sirius postfix-exporter prod:
+  extends:
+    - .base-deploy
+  stage: sirius
+  variables:
+    RELEASE: "${CHART_NAME}"
+    CHART_NAME: "prometheus-postfix-exporter"
+    CLUSTER_NAME: "sirius"
+  environment:
+    name: prod
+  tags:
+    - kube-ci
+
 sirius elasticsearch-exporter prod:
   extends:
     - .base-deploy

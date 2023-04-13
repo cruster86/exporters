@@ -36,7 +36,7 @@ Common labels
 */}}
 {{- define "prometheus-postfix-exporter.labels" -}}
 {{ include "prometheus-postfix-exporter.selectorLabels" . }}
-release: "{{ .Release.Name }}"
+release: {{ .Release.Name }}
 heritage: {{ .Release.Service }}
 {{- end }}
 

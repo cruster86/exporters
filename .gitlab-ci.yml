@@ -236,6 +236,7 @@ univ redis-exporter stage:
 ################  SIRIUS  ################
 
 sirius postfix-exporter prod:
+  allow_failure: true
   extends:
     - .base-deploy
   stage: sirius

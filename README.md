@@ -10,8 +10,8 @@
 
 Upstream проекты:
 
+  - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-elasticsearch-exporter
   - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-postgres-exporter
   - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-redis-exporter
-  - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-elasticsearch-exporter
-  - https://gitlab.sirius.online/infra/exporters/-/tree/main/deploy/helm/charts/prometheus-postfix-exporter
   - https://gitlab.sirius.online/cheops-edu/ngenix-client
+  - https://github.com/kumina/postfix_exporter

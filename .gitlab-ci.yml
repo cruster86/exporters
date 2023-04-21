@@ -4,7 +4,7 @@ stages:
   - univ
   - sirius
 
-.base-deploy:
+.prepare-deploy:
   when: manual
   before_script:
     - echo 'Deploy parameters:'
@@ -12,9 +12,11 @@ stages:
     - echo 'CI_ENVIRONMENT_SLUG =>' ${CI_ENVIRONMENT_SLUG}
     - echo 'CHART_NAME =>' ${CHART_NAME}
     - echo 'RELEASE =>' ${RELEASE}
-  script:
     - kubectl get ns prometheus-exporters || kubectl create ns prometheus-exporters
     - export access_config="${CLUSTER_NAME}_access_config"
+
+.script-deploy:
+  script:
     - chmod +x ./scripts/helm_deploy_and_wait.sh
     - RELEASE_NAME="${RELEASE}"
       NAMESPACE="prometheus-exporters"
@@ -30,11 +32,23 @@ stages:
       --wait"
       ./scripts/helm_deploy_and_wait.sh
 
+.helm-deploy:
+  script:
+    - helm upgrade --install
+      ${RELEASE}
+      --namespace prometheus-exporters
+      deploy/helm/charts/${CHART_NAME}
+      -f deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml
+      -f ${!access_config}
+      --atomic
+      --wait
+
 ################  CPM-DEV  ################
 
 cpm elasticsearch-exporter stage:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: cpm
   variables:
     RELEASE: "${CHART_NAME}"
@@ -49,7 +63,8 @@ cpm elasticsearch-exporter stage:
 
 cpm elasticsearch-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: cpm
   variables:
     RELEASE: "${CHART_NAME}"
@@ -62,7 +77,8 @@ cpm elasticsearch-exporter prod:
 
 cpm ngenix-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: cpm
   variables:
     RELEASE: "${CHART_NAME}"
@@ -75,7 +91,8 @@ cpm ngenix-exporter prod:
 
 cpm redis-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: cpm
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}" 
@@ -88,7 +105,8 @@ cpm redis-exporter prod:
 
 cpm postgres-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: cpm
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -103,7 +121,8 @@ cpm postgres-exporter prod:
 
 corp elasticsearch-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: corp
   variables:
     RELEASE: "${CHART_NAME}"
@@ -116,7 +135,8 @@ corp elasticsearch-exporter prod:
 
 corp ngenix-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: corp
   variables:
     RELEASE: "${CHART_NAME}"
@@ -129,7 +149,8 @@ corp ngenix-exporter prod:
 
 corp postgres-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: corp
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -142,7 +163,8 @@ corp postgres-exporter prod:
 
 corp redis-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: corp
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -157,7 +179,8 @@ corp redis-exporter prod:
 
 univ elasticsearch-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: univ
   variables:
     RELEASE: "${CHART_NAME}"
@@ -170,7 +193,8 @@ univ elasticsearch-exporter prod:
 
 univ ngenix-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: univ
   variables:
     RELEASE: "${CHART_NAME}"
@@ -183,7 +207,8 @@ univ ngenix-exporter prod:
 
 univ postgres-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: univ
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -196,7 +221,8 @@ univ postgres-exporter prod:
 
 univ postgres-exporter stage:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: univ
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -209,7 +235,8 @@ univ postgres-exporter stage:
 
 univ redis-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: univ
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -222,7 +249,8 @@ univ redis-exporter prod:
 
 univ redis-exporter stage:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: univ
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -238,7 +266,8 @@ univ redis-exporter stage:
 sirius postfix-exporter prod:
   allow_failure: true
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .helm-deploy
   stage: sirius
   variables:
     RELEASE: "${CHART_NAME}"
@@ -251,7 +280,8 @@ sirius postfix-exporter prod:
 
 sirius elasticsearch-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: sirius
   variables:
     RELEASE: "${CHART_NAME}"
@@ -264,7 +294,8 @@ sirius elasticsearch-exporter prod:
 
 sirius ngenix-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: sirius
   variables:
     RELEASE: "${CHART_NAME}"
@@ -277,7 +308,8 @@ sirius ngenix-exporter prod:
 
 sirius postgres-exporter prod:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: sirius
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -290,7 +322,8 @@ sirius postgres-exporter prod:
 
 sirius postgres-exporter stage:
   extends:
-    - .base-deploy
+    - .prepare-deploy
+    - .script-deploy
   stage: sirius
   variables:
     RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -303,7 +336,8 @@ sirius postgres-exporter stage:
 
 #sirius redis-exporter prod:
 #  extends:
-#    - .base-deploy
+#    - .prepare-deploy
+#    - .script-deploy
 #  stage: sirius
 #  variables:
 #    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
@@ -316,7 +350,8 @@ sirius postgres-exporter stage:
 
 #sirius redis-exporter stage:
 #  extends:
-#    - .base-deploy
+#    - .prepare-deploy
+#    - .script-deploy
 #  stage: sirius
 #  variables:
 #    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"

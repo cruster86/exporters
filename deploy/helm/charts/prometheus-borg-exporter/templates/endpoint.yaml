@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  labels:
+    {{- include "prometheus-borg-exporter.labels" . | nindent 4 }}
+  name: {{ template "prometheus-borg-exporter.name" . }}
+  namespace: {{ .Release.Namespace }}
+subsets:
+- addresses:
+  - ip: {{ .Values.endpoints.ip }}
+    nodeName: {{ .Values.endpoints.node }}
+  ports:
+  - name: {{ .Values.service.name }}
+    port: {{ .Values.service.port }}
+    protocol: TCP

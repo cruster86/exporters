@@ -263,6 +263,20 @@ univ redis-exporter stage:
 
 ################  SIRIUS  ################
 
+sirius balancer-exporter prod:
+  extends:
+    - .prepare-deploy
+    - .helm-deploy
+  stage: sirius
+  variables:
+    RELEASE: "${CHART_NAME}"
+    CHART_NAME: "prometheus-balancer-exporter"
+    CLUSTER_NAME: "sirius"
+  environment:
+    name: prod
+  tags:
+    - kube-ci
+
 sirius robot-exporter prod:
   extends:
     - .prepare-deploy

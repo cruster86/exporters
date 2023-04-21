@@ -8,12 +8,8 @@ metadata:
 spec:
   endpoints:
   - interval: {{ .Values.serviceMonitor.interval }}
-    metricRelabelings:
-{{ toYaml .Values.serviceMonitor.metricRelabelings | indent 4 }}
     path: {{ .Values.serviceMonitor.path }}
     port: {{ .Values.serviceMonitor.port }}
-    relabelings:
-{{ toYaml .Values.serviceMonitor.relabelings | indent 4 }}
     scheme: {{ .Values.serviceMonitor.scheme }}
   namespaceSelector:
     matchNames:

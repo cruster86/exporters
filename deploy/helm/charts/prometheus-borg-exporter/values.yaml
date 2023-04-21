@@ -10,7 +10,7 @@ service:
   port: 9100
 
 # Настройки сервисмонитора:
-servicemonitor:
+serviceMonitor:
   interval: 60s
   path: /metrics
   port: metrics

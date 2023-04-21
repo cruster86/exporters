@@ -263,8 +263,21 @@ univ redis-exporter stage:
 
 ################  SIRIUS  ################
 
+sirius borg-exporter prod:
+  extends:
+    - .prepare-deploy
+    - .helm-deploy
+  stage: sirius
+  variables:
+    RELEASE: "${CHART_NAME}"
+    CHART_NAME: "prometheus-borg-exporter"
+    CLUSTER_NAME: "sirius"
+  environment:
+    name: prod
+  tags:
+    - kube-ci
+
 sirius postfix-exporter prod:
-  allow_failure: true
   extends:
     - .prepare-deploy
     - .helm-deploy

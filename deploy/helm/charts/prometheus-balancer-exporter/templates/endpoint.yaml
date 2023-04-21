@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 subsets:
 - addresses:
-  - ip: {{ .Values.service.uranus.ip }}
+  - ip: {{ .Values.endpoints.uranus.ip }}
     nodeName: {{ .Values.endpoints.uranus.node }}
   ports:
   - name: {{ .Values.service.name }}
@@ -22,7 +22,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
 subsets:
 - addresses:
-  - ip: {{ .Values.service.pluto.ip }}
+  - ip: {{ .Values.endpoints.pluto.ip }}
     nodeName: {{ .Values.endpoints.pluto.node }}
   ports:
   - name: {{ .Values.service.name }}

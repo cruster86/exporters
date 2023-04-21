@@ -7,15 +7,12 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   endpoints:
-  - interval: 60s
+  - interval: {{ .Values.serviceMonitor.interval }}
     metricRelabelings:
-    - action: keep
-      regex: postfix.*
-      sourceLabels:
-      - __name__
-    path: /metrics
-    port: metrics
-    scheme: http
+{{ toYaml .Values.serviceMonitor.metricRelabelings | indent 4 }}
+    path: {{ .Values.serviceMonitor.path }}
+    port: {{ .Values.serviceMonitor.port }}
+    scheme: {{ .Values.serviceMonitor.scheme }}
   namespaceSelector:
     matchNames:
     - {{ .Release.Namespace }}

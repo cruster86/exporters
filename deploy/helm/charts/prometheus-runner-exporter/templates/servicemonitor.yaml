@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    {{- include "prometheus-runner-exporter.labels" . | nindent 4 }}
+  name: {{ template "prometheus-runner-exporter.name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  endpoints:
+  - interval: {{ .Values.serviceMonitor.interval }}
+    metricRelabelings:
+{{ toYaml .Values.serviceMonitor.metricRelabelings | indent 4 }}
+    path: {{ .Values.serviceMonitor.path }}
+    port: {{ .Values.serviceMonitor.port }}
+    relabelings:
+{{ toYaml .Values.serviceMonitor.relabelings | indent 4 }}
+    scheme: {{ .Values.serviceMonitor.scheme }}
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      {{- include "prometheus-runner-exporter.selectorLabels" . | nindent 6 }}

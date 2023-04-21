@@ -1,0 +1,7 @@
+apiVersion: v1
+name: prometheus-robot-exporter
+description: |
+  Prometheus-robot-exporter
+type: application
+version: 1.0
+appVersion: 0.1

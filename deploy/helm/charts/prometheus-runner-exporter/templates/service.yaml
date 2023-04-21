@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "prometheus-runner-exporter.labels" . | nindent 4 }}
+  name: {{ template "prometheus-runner-exporter.name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  ports:
+  - name: {{ .Values.service.name }}
+    port: {{ .Values.service.port }}
+    protocol: TCP
+    targetPort: {{ .Values.service.port }}
+  sessionAffinity: None
+  type: {{ .Values.service.type }}

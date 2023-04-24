@@ -1,12 +1,12 @@
 # Настройки эндпоинта
 endpoints:
-  redis-ci-1:
+  redis_ci_1:
     ip: 192.168.88.200
     node: redic-ci-1
-  redis-ci-2:
+  redis_ci_2:
     ip: 192.168.88.201
     node: redic-ci-2
-  redis-ci-3:
+  redis_ci_3:
     ip: 192.168.88.202
     node: redic-ci-3
 

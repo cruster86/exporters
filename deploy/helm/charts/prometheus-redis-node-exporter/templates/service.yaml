@@ -4,8 +4,8 @@ kind: Service
 metadata:
   labels:
     {{- include "prometheus-redis-node-exporter.labels" . | nindent 4 }}
-    node: {{ .Values.endpoints.redis-ci-1.node }}
-  name: prometheus-{{ .Values.endpoints.redis-ci-1.node }}-node-exporter
+    node: {{ .Values.endpoints.redis_ci_1.node }}
+  name: prometheus-{{ .Values.endpoints.redis_ci_1.node }}-node-exporter
   namespace: {{ .Release.Namespace }}
 spec:
   ports:
@@ -23,8 +23,8 @@ kind: Service
 metadata:
   labels:
     {{- include "prometheus-redis-node-exporter.labels" . | nindent 4 }}
-    node: {{ .Values.endpoints.redis-ci-2.node }}
-  name: prometheus-{{ .Values.endpoints.redis-ci-2.node }}-node-exporter
+    node: {{ .Values.endpoints.redis_ci_2.node }}
+  name: prometheus-{{ .Values.endpoints.redis_ci_2.node }}-node-exporter
   namespace: {{ .Release.Namespace }}
 spec:
   ports:
@@ -42,8 +42,8 @@ kind: Service
 metadata:
   labels:
     {{- include "prometheus-redis-node-exporter.labels" . | nindent 4 }}
-    node: {{ .Values.endpoints.redis-ci-3.node }}
-  name: prometheus-{{ .Values.endpoints.redis-ci-3.node }}-node-exporter
+    node: {{ .Values.endpoints.redis_ci_3.node }}
+  name: prometheus-{{ .Values.endpoints.redis_ci_3.node }}-node-exporter
   namespace: {{ .Release.Namespace }}
 spec:
   ports:

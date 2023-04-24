@@ -1,0 +1,49 @@
+# Настройки эндпоинта
+endpoints:
+  hosting_controller:
+    ip: 51.250.22.203
+    node: storage0.sirius.online
+  hosting_k8s:
+    ip: 51.250.22.203
+    node: storage0.sirius.online
+
+# Настройки сервиса
+service:
+  hosting_controller:
+    name: metrics
+    type: ClusterIP
+    port: 80
+  hosting_k8s:
+    name: k8s
+    type: ClusterIP
+    port: 80  
+
+# Настройки сервисмонитора:
+serviceMonitor:
+  interval: 60s
+  scheme: http
+  basicAuth:
+    password:
+      key: password
+      name: hosting-basic-auth
+    username:
+      key: user
+      name: hosting-basic-auth
+  metricRelabelings:
+  - action: keep
+    regex: (nginx_ingress_controller_request_duration_seconds_bucket|nginx_ingress_controller_requests|nginx_ingress_controller_response_size_sum|nginx_ingress_controller_request_size_sum|nginx_http_response_count_total|node_cpu_seconds_total|node_filesystem_size_bytes|node_filesystem_avail_bytes|node_memory_MemAvailable_bytes|node_memory_MemTotal_bytes)
+    sourceLabels:
+      - __name__
+  relabelings:
+  - action: replace
+    regex: (.*)
+    replacement: $1
+    sourceLabels:
+    - __meta_kubernetes_endpoint_node_name
+    targetLabel: __address__
+  hosting_controller:
+    path: /metrics
+    port: metrics
+  hosting_k8s:
+    path: /k8s
+    port: k8s

@@ -1,0 +1,57 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    {{- include "prometheus-hosting-exporter.labels" . | nindent 4 }}
+    node: {{ .Values.endpoints.hosting_controller.node }}
+    app: prometheus-hosting_controller-exporter
+  name: prometheus-hosting_controller-exporter
+  namespace: {{ .Release.Namespace }}
+spec:
+  endpoints:
+  - basicAuth:
+{{ toYaml .Values.serviceMonitor.basicAuth | indent 4 }}
+    interval: {{ .Values.serviceMonitor.interval }}
+    metricRelabelings:
+{{ toYaml .Values.serviceMonitor.metricRelabelings | indent 4 }}
+    path: {{ .Values.serviceMonitor.hosting_controller.path }}
+    port: {{ .Values.serviceMonitor.hosting_controller.port }}
+    relabelings:
+{{ toYaml .Values.serviceMonitor.relabelings | indent 4 }}
+    scheme: {{ .Values.serviceMonitor.scheme }}
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      app: prometheus-hosting_controller-exporter
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    {{- include "prometheus-hosting-exporter.labels" . | nindent 4 }}
+    node: {{ .Values.endpoints.hosting_k8s.node }}
+    app: prometheus-hosting_k8s-exporter
+  name: prometheus-hosting_k8s-exporter
+  namespace: {{ .Release.Namespace }}
+spec:
+  endpoints:
+  - basicAuth:
+{{ toYaml .Values.serviceMonitor.basicAuth | indent 4 }}
+    interval: {{ .Values.serviceMonitor.interval }}
+    metricRelabelings:
+{{ toYaml .Values.serviceMonitor.metricRelabelings | indent 4 }}
+    path: {{ .Values.serviceMonitor.hosting_k8s.path }}
+    port: {{ .Values.serviceMonitor.hosting_k8s.port }}
+    relabelings:
+{{ toYaml .Values.serviceMonitor.relabelings | indent 4 }}
+    scheme: {{ .Values.serviceMonitor.scheme }}
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      app: prometheus-hosting_k8s-exporter

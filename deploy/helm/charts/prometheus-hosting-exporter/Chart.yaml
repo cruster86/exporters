@@ -1,0 +1,7 @@
+apiVersion: v1
+name: prometheus-hosting-exporter
+description: |
+  Prometheus-hosting-exporter
+type: application
+version: 1.0
+appVersion: 0.1

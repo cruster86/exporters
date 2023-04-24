@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "prometheus-hosting-exporter.labels" . | nindent 4 }}
+    node: {{ .Values.endpoints.hosting_controller.node }}
+    app: prometheus-hosting_controller-exporter
+  name: prometheus-hosting_controller-exporter
+  namespace: {{ .Release.Namespace }}
+spec:
+  ports:
+  - name: {{ .Values.service.hosting_controller.name }}
+    port: {{ .Values.service.hosting_controller.port }}
+    protocol: TCP
+    targetPort: {{ .Values.service.hosting_controller.port }}
+  sessionAffinity: None
+  type: {{ .Values.service.hosting_controller.type }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "prometheus-hosting-exporter.labels" . | nindent 4 }}
+    node: {{ .Values.endpoints.hosting_k8s.node }}
+    app: prometheus-hosting_k8s-exporter
+  name: prometheus-hosting_k8s-exporter
+  namespace: {{ .Release.Namespace }}
+spec:
+  ports:
+  - name: {{ .Values.service.hosting_k8s.name }}
+    port: {{ .Values.service.hosting_k8s.port }}
+    protocol: TCP
+    targetPort: {{ .Values.service.hosting_k8s.port }}
+  sessionAffinity: None
+  type: {{ .Values.service.hosting_k8s.type }}

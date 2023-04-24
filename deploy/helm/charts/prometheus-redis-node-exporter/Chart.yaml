@@ -1,0 +1,7 @@
+apiVersion: v1
+name: prometheus-redis-node-exporter
+description: |
+  Prometheus-redis-node-exporter
+type: application
+version: 1.0
+appVersion: 0.1

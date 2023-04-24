@@ -1,0 +1,36 @@
+# Настройки эндпоинта
+endpoints:
+  redis-ci-1:
+    ip: 192.168.88.200
+    node: redic-ci-1
+  redis-ci-2:
+    ip: 192.168.88.201
+    node: redic-ci-2
+  redis-ci-3:
+    ip: 192.168.88.202
+    node: redic-ci-3
+
+# Настройки сервиса
+service:
+  name: metrics
+  type: ClusterIP
+  port: 9100
+
+# Настройки сервисмонитора:
+serviceMonitor:
+  interval: 60s
+  path: /metrics
+  port: metrics
+  scheme: http
+  metricRelabelings:
+    - action: keep
+      regex: (node_name_info|node_uname_info|node_time_seconds|node_boot_time_seconds|node_load5|node_load15|node_memory_MemAvailable_bytes|node_filesystem_avail_bytes|node_filesystem_size_bytes|node_filefd_maximum|node_filefd_allocated|node_disk_io_time_seconds_total|node_network_receive_bytes_total|node_network_transmit_bytes_total|node_memory_MemTotal_bytes|node_memory_MemFree_bytes|node_memory_Cached_bytes|node_memory_Buffers_bytes|node_memory_SReclaimable_bytes|node_memory_SwapTotal_bytes|node_memory_SwapFree_bytes|node_cpu_seconds_total)
+      sourceLabels:
+      - __name__
+  relabelings:
+    - action: replace
+      regex: (.*)
+      replacement: $1
+      sourceLabels:
+      - __meta_kubernetes_endpoint_node_name
+      targetLabel: node

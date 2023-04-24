@@ -1,0 +1,46 @@
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: prometheus-{{ .Values.endpoints.redis-ci-1.node }}-node-exporter
+  namespace: {{ .Release.Namespace }}
+subsets:
+- addresses:
+  - ip: {{ .Values.endpoints.redis-ci-1.ip }}
+    nodeName: {{ .Values.endpoints.redis-ci-1.node }}
+  ports:
+  - name: {{ .Values.service.name }}
+    port: {{ .Values.service.port }}
+    protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: prometheus-{{ .Values.endpoints.redis-ci-2.node }}-node-exporter
+  namespace: {{ .Release.Namespace }}
+subsets:
+- addresses:
+  - ip: {{ .Values.endpoints.redis-ci-2.ip }}
+    nodeName: {{ .Values.endpoints.redis-ci-2.node }}
+  ports:
+  - name: {{ .Values.service.name }}
+    port: {{ .Values.service.port }}
+    protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: prometheus-{{ .Values.endpoints.redis-ci-3.node }}-node-exporter
+  namespace: {{ .Release.Namespace }}
+subsets:
+- addresses:
+  - ip: {{ .Values.endpoints.redis-ci-3.ip }}
+    nodeName: {{ .Values.endpoints.redis-ci-3.node }}
+  ports:
+  - name: {{ .Values.service.name }}
+    port: {{ .Values.service.port }}
+    protocol: TCP

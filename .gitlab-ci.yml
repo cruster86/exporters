@@ -28,6 +28,8 @@ stages:
       --set global.gitlab_secret="${GITLAB_REGISTRY}"
       --set global.ngenix_user_login="${NGENIX_USER_LOGIN}"
       --set global.ngenix_user_token="${NGENIX_USER_TOKEN}"
+      --set global.hosting_secret="${HOSTING_AUTH}"
+      --set global.hosting_user="${HOSTING_USER}"
       --atomic
       --wait"
       ./scripts/helm_deploy_and_wait.sh

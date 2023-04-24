@@ -20,4 +20,4 @@ spec:
     - {{ .Release.Namespace }}
   selector:
     matchLabels:
-      {{- include "prometheus-robot-exporter.selectorLabels" . | nindent 6 }}
+      {{- include "prometheus-redis-node-exporter.selectorLabels" . | nindent 6 }}

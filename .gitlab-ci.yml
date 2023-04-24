@@ -389,6 +389,20 @@ sirius postgres-exporter stage:
   tags:
     - kube-ci
 
+sirius redis-node-exporter prod:
+  extends:
+    - .prepare-deploy
+    - .script-deploy
+  stage: sirius
+  variables:
+    RELEASE: "${CHART_NAME}"
+    CHART_NAME: "prometheus-redis-node-exporter"
+    CLUSTER_NAME: "sirius"
+  environment:
+    name: prod
+  tags:
+    - kube-ci
+
 #sirius redis-exporter prod:
 #  extends:
 #    - .prepare-deploy

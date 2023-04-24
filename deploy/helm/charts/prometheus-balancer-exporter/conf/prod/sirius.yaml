@@ -1,8 +1,8 @@
 # Настройки эндпоинта
-#endpoints:
-#  uranus:
-#    ip: 192.168.88.1
-#    node: balancer-uranus
-#  pluto:
-#    ip: 192.168.88.2
-#    node: balancer-pluto
+endpoints:
+  uranus:
+    ip: 192.168.88.1
+    node: balancer-uranus
+  pluto:
+    ip: 192.168.88.2
+    node: balancer-pluto

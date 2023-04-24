@@ -1,4 +1,4 @@
-#{{- if .Values.endpoints.uranus }}
+{{- if .Values.endpoints.uranus }}
 ---
 apiVersion: v1
 kind: Endpoints
@@ -13,10 +13,9 @@ subsets:
   - name: {{ .Values.service.name }}
     port: {{ .Values.service.port }}
     protocol: TCP
-#{{- end }}
+{{- end }}
 
-#{{- if or .Values.endpoints.pluto .Values.endpoints.uranus }}
-#{{- if or (and (.Values.endpoints.pluto) (.Values.endpoints.uranus)) (.Values.endpoints.pluto)) }}
+{{- if or (and .Values.endpoints.pluto .Values.endpoints.uranus) (.Values.endpoints.pluto) }}
 ---
 apiVersion: v1
 kind: Endpoints
@@ -31,21 +30,21 @@ subsets:
   - name: {{ .Values.service.name }}
     port: {{ .Values.service.port }}
     protocol: TCP
-#{{- end }}
+{{- end }}
 
-#{{- if .Values.endpoints.univ }}
-#---
-#apiVersion: v1
-#kind: Endpoints
-#metadata:
-#  name: prometheus-{{ .Values.endpoints.univ.node }}-exporter
-#  namespace: {{ .Release.Namespace }}
-#subsets:
-#- addresses:
-#  - ip: {{ .Values.endpoints.univ.ip }}
-#    nodeName: {{ .Values.endpoints.univ.node }}
-#  ports:
-#  - name: {{ .Values.service.name }}
-#    port: {{ .Values.service.port }}
-#    protocol: TCP
-#{{- end }}
+{{- if .Values.endpoints.univ }}
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: prometheus-{{ .Values.endpoints.univ.node }}-exporter
+  namespace: {{ .Release.Namespace }}
+subsets:
+- addresses:
+  - ip: {{ .Values.endpoints.univ.ip }}
+    nodeName: {{ .Values.endpoints.univ.node }}
+  ports:
+  - name: {{ .Values.service.name }}
+    port: {{ .Values.service.port }}
+    protocol: TCP
+{{- end }}

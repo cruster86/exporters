@@ -1,4 +1,4 @@
-#{{- if .Values.endpoints.uranus }}
+{{- if .Values.endpoints.uranus }}
 ---
 apiVersion: v1
 kind: Service
@@ -16,10 +16,10 @@ spec:
     targetPort: {{ .Values.service.port }}
   sessionAffinity: None
   type: {{ .Values.service.type }}
-#{{- end }}
+{{- end }}
 
-#{{- if or .Values.endpoints.pluto  .Values.endpoints.uranus }}
-#{{- if or (and (.Values.endpoints.pluto) (.Values.endpoints.uranus)) (.Values.endpoints.pluto)) }}
+
+{{- if or (and .Values.endpoints.pluto .Values.endpoints.uranus) (.Values.endpoints.pluto) }}
 ---
 apiVersion: v1
 kind: Service
@@ -37,24 +37,24 @@ spec:
     targetPort: {{ .Values.service.port }}
   sessionAffinity: None
   type: {{ .Values.service.type }}
-#{{- end }}
+{{- end }}
 
-#{{- if .Values.endpoints.univ }}
-#---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  labels:
-#    {{- include "prometheus-balancer-exporter.labels" . | nindent 4 }}
-#    node: {{ .Values.endpoints.univ.node }}
-#  name: prometheus-{{ .Values.endpoints.univ.node }}-exporter
-#  namespace: {{ .Release.Namespace }}
-#spec:
-#  ports:
-#  - name: {{ .Values.service.name }}
-#    port: {{ .Values.service.port }}
-#    protocol: TCP
-#    targetPort: {{ .Values.service.port }}
-#  sessionAffinity: None
-#  type: {{ .Values.service.type }}
-#{{- end }}
+{{- if .Values.endpoints.univ }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "prometheus-balancer-exporter.labels" . | nindent 4 }}
+    node: {{ .Values.endpoints.univ.node }}
+  name: prometheus-{{ .Values.endpoints.univ.node }}-exporter
+  namespace: {{ .Release.Namespace }}
+spec:
+  ports:
+  - name: {{ .Values.service.name }}
+    port: {{ .Values.service.port }}
+    protocol: TCP
+    targetPort: {{ .Values.service.port }}
+  sessionAffinity: None
+  type: {{ .Values.service.type }}
+{{- end }}

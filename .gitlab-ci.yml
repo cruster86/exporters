@@ -119,6 +119,20 @@ cpm postgres-exporter prod:
 
 ################  CORP  ################
 
+corp balancer-exporter prod:
+  extends:
+    - .prepare-deploy
+    - .helm-deploy
+  stage: corp
+  variables:
+    RELEASE: "${CHART_NAME}"
+    CHART_NAME: "prometheus-balancer-exporter"
+    CLUSTER_NAME: "corp"
+  environment:
+    name: prod
+  tags:
+    - kube-corp
+
 corp elasticsearch-exporter prod:
   extends:
     - .prepare-deploy
@@ -176,6 +190,20 @@ corp redis-exporter prod:
     - kube-corp
 
 #################  UNIV  ################
+
+univ balancer-exporter prod:
+  extends:
+    - .prepare-deploy
+    - .helm-deploy
+  stage: univ
+  variables:
+    RELEASE: "${CHART_NAME}"
+    CHART_NAME: "prometheus-balancer-exporter"
+    CLUSTER_NAME: "univ"
+  environment:
+    name: prod
+  tags:
+    - kube-univ
 
 univ elasticsearch-exporter prod:
   extends:

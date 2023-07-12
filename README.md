@@ -2,7 +2,7 @@
 
 Настройки для кластеров находятся в:
 
-  - `deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml`
+  - `charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml`
 
 Конфигурация деплоя находится в: `.gitlab-ci.yaml`
 

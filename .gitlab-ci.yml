@@ -20,9 +20,9 @@ stages:
     - chmod +x ./scripts/helm_deploy_and_wait.sh
     - RELEASE_NAME="${RELEASE}"
       NAMESPACE="prometheus-exporters"
-      CHART="deploy/helm/charts/${CHART_NAME}"
+      CHART="charts/${CHART_NAME}"
       HELM_ARGS="
-      -f deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml
+      -f charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml
       -f ${!access_config}
       --set global.yc_secret="${YC_REGISTRY}"
       --set global.gitlab_secret="${GITLAB_REGISTRY}"
@@ -39,27 +39,27 @@ stages:
     - helm upgrade --install
       ${RELEASE}
       --namespace prometheus-exporters
-      deploy/helm/charts/${CHART_NAME}
-      -f deploy/helm/charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml
+      charts/${CHART_NAME}
+      -f charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml
       -f ${!access_config}
       --atomic
       --wait
 
 ################  CPM-DEV  ################
 
-cpm elasticsearch-exporter stage:
-  extends:
-    - .prepare-deploy
-    - .script-deploy
-  stage: cpm
-  variables:
-    RELEASE: "${CHART_NAME}"
-    CHART_NAME: "prometheus-elasticsearch-exporter"
-    CLUSTER_NAME: "cpm_dev"
-  environment:
-    name: stage
-  tags:
-    - kube-cpm
+#cpm elasticsearch-exporter stage:
+#  extends:
+#    - .prepare-deploy
+#    - .script-deploy
+#  stage: cpm
+#  variables:
+#    RELEASE: "${CHART_NAME}"
+#    CHART_NAME: "prometheus-elasticsearch-exporter"
+#    CLUSTER_NAME: "cpm_dev"
+#  environment:
+#    name: stage
+#  tags:
+#    - kube-cpm
 
 ################  CPM-YC  ################
 

@@ -1,5 +1,4 @@
-nodeSelector:
-  node-role: monitoring
+nodeSelector: {}
 
 redisAddress: 'redis://redis-haproxy.redis-haproxy.svc:6379'
 

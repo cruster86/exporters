@@ -19,8 +19,7 @@ es:
   timeout: 60s
   uri: 'http://elasticsearch-master.logging.svc:9200'
 
-nodeSelector:
-  node-role: monitoring
+nodeSelector: {}
 
 serviceMonitor:
   enabled: true

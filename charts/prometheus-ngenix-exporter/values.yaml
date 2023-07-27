@@ -22,8 +22,7 @@ resources:
     memory: 300Mi
 
 # Механизм выбора нод для установки
-nodeSelector:
-  node-role: monitoring
+nodeSelector: {}
 
 # Настройка невосприимчивости к теинтам нодж
 tolerations:

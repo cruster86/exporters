@@ -2,3 +2,5 @@
 
 # ID конфигурации Ngenix
 config_ids: "[81239]" 
+
+nodeSelector: {}

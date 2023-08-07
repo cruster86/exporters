@@ -1,8 +1,8 @@
 stages:
-  - cpm
   - corp
   - univ
   - sirius
+#  - cpm
 
 .prepare-deploy:
   when: manual
@@ -63,61 +63,61 @@ stages:
 
 ################  CPM-YC  ################
 
-cpm elasticsearch-exporter prod:
-  extends:
-    - .prepare-deploy
-    - .script-deploy
-  stage: cpm
-  variables:
-    RELEASE: "${CHART_NAME}"
-    CHART_NAME: "prometheus-elasticsearch-exporter"
-    CLUSTER_NAME: "cpm"
-  environment:
-    name: prod
-  tags:
-    - cpm-yac
-
-cpm ngenix-exporter prod:
-  extends:
-    - .prepare-deploy
-    - .script-deploy
-  stage: cpm
-  variables:
-    RELEASE: "${CHART_NAME}"
-    CHART_NAME: "prometheus-ngenix-exporter"
-    CLUSTER_NAME: "cpm"
-  environment:
-    name: prod
-  tags:
-    - cpm-yac
-
-cpm redis-exporter prod:
-  extends:
-    - .prepare-deploy
-    - .script-deploy
-  stage: cpm
-  variables:
-    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}" 
-    CHART_NAME: "prometheus-redis-exporter"
-    CLUSTER_NAME: "cpm"
-  environment:
-    name: prod
-  tags:
-    - cpm-yac
-
-cpm postgres-exporter prod:
-  extends:
-    - .prepare-deploy
-    - .script-deploy
-  stage: cpm
-  variables:
-    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-    CHART_NAME: "prometheus-postgres-exporter"
-    CLUSTER_NAME: "cpm"
-  environment:
-    name: prod
-  tags:
-    - cpm-yac
+#cpm elasticsearch-exporter prod:
+#  extends:
+#    - .prepare-deploy
+#    - .script-deploy
+#  stage: cpm
+#  variables:
+#    RELEASE: "${CHART_NAME}"
+#    CHART_NAME: "prometheus-elasticsearch-exporter"
+#    CLUSTER_NAME: "cpm"
+#  environment:
+#    name: prod
+#  tags:
+#    - cpm-yac
+#
+#cpm ngenix-exporter prod:
+#  extends:
+#    - .prepare-deploy
+#    - .script-deploy
+#  stage: cpm
+#  variables:
+#    RELEASE: "${CHART_NAME}"
+#    CHART_NAME: "prometheus-ngenix-exporter"
+#    CLUSTER_NAME: "cpm"
+#  environment:
+#    name: prod
+#  tags:
+#    - cpm-yac
+#
+#cpm redis-exporter prod:
+#  extends:
+#    - .prepare-deploy
+#    - .script-deploy
+#  stage: cpm
+#  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}" 
+#    CHART_NAME: "prometheus-redis-exporter"
+#    CLUSTER_NAME: "cpm"
+#  environment:
+#    name: prod
+#  tags:
+#    - cpm-yac
+#
+#cpm postgres-exporter prod:
+#  extends:
+#    - .prepare-deploy
+#    - .script-deploy
+#  stage: cpm
+#  variables:
+#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
+#    CHART_NAME: "prometheus-postgres-exporter"
+#    CLUSTER_NAME: "cpm"
+#  environment:
+#    name: prod
+#  tags:
+#    - cpm-yac
 
 ################  CORP  ################
 

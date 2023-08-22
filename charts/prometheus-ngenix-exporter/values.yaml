@@ -38,3 +38,7 @@ service:
 # Настройки сервиссмонитора
 servicemonitor:
   release: rancher-monitoring
+
+# Включаем ли мы секреты
+secrets:
+  enabled: true

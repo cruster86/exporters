@@ -156,3 +156,7 @@ serviceAccount:
 # Creates a PodSecurityPolicy and the role/rolebinding allowing the serviceaccount to use it
 podSecurityPolicies:
   enabled: false
+
+# Включаем ли мы секреты
+secrets:
+  enabled: true

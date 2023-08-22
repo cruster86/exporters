@@ -34,3 +34,7 @@ serviceMonitor:
       sourceLabels:
       - __meta_kubernetes_endpoint_node_name
       targetLabel: node
+
+# Включаем ли мы секреты
+secrets:
+  enabled: true

@@ -12,3 +12,7 @@ serviceMonitor:
   path: /metrics
   port: metrics
   scheme: http
+
+# Включаем ли мы секреты
+secrets:
+  enabled: true

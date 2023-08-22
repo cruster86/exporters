@@ -392,3 +392,7 @@ extraVolumeMounts: []
 podDisruptionBudget:
   enabled: false
   maxUnavailable: 1
+
+# Включаем ли мы секреты
+secrets:
+  enabled: true

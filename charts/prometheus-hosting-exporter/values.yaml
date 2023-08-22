@@ -47,3 +47,7 @@ serviceMonitor:
   hosting_k8s:
     path: /k8s
     port: k8s
+
+# Включаем ли мы секреты
+secrets:
+  enabled: true

@@ -20,3 +20,7 @@ serviceMonitor:
       regex: postfix.*
       sourceLabels:
       - __name__
+
+# Включаем ли мы секреты
+secrets:
+  enabled: true

@@ -1,6 +1,0 @@
-### Настройки для кластера CORP
-
-# ID конфигурации Ngenix
-config_ids: "[81239]" 
-
-nodeSelector: {}

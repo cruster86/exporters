@@ -34,8 +34,8 @@ securityContext:
 dnsConfig: {}
 
 log:
-  format: logfmt
-  level: info
+  format: json
+  level: error
 
 resources: {}
 

@@ -15,3 +15,5 @@ Upstream проекты:
   - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-redis-exporter
   - https://gitlab.sirius.online/cheops-edu/ngenix-client
   - https://github.com/kumina/postfix_exporter
+  - https://github.com/percona/mongodb_exporter
+  - https://github.com/kbudde/rabbitmq_exporter

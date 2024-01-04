@@ -56,20 +56,6 @@ sirius elasticsearch-exporter prod:
   tags:
     - kube-ci
 
-sirius postgres-exporter prod:
-  extends:
-    - .prepare-deploy
-    - .script-deploy
-  stage: sirius
-  variables:
-    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-    CHART_NAME: "prometheus-postgres-exporter"
-    CLUSTER_NAME: "sirius"
-  environment:
-    name: prod
-  tags:
-    - kube-ci
-
 sirius postgres-exporter stage:
   extends:
     - .prepare-deploy
@@ -83,31 +69,3 @@ sirius postgres-exporter stage:
     name: stage
   tags:
     - kube-ci
-
-#sirius redis-exporter prod:
-#  extends:
-#    - .prepare-deploy
-#    - .script-deploy
-#  stage: sirius
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-redis-exporter"
-#    CLUSTER_NAME: "sirius"
-#  environment:
-#    name: prod
-#  tags:
-#    - kube-ci
-
-#sirius redis-exporter stage:
-#  extends:
-#    - .prepare-deploy
-#    - .script-deploy
-#  stage: sirius
-#  variables:
-#    RELEASE: "${CHART_NAME}-${CI_ENVIRONMENT_SLUG}"
-#    CHART_NAME: "prometheus-redis-exporter"
-#    CLUSTER_NAME: "sirius"
-#  environment:
-#    name: stage
-#  tags:
-#    - kube-ci

@@ -1,6 +1,5 @@
 stages:
   - sirius
-  - univ
 
 .prepare-deploy:
   when: manual

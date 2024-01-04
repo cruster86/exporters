@@ -28,8 +28,7 @@ stages:
       --set global.ngenix_user_token="${NGENIX_USER_TOKEN}"
       --set global.hosting_secret="${HOSTING_AUTH}"
       --set global.hosting_user="${HOSTING_USER}"
-      --atomic
-      --wait"
+      --debug"
       ./scripts/helm_deploy_and_wait.sh
 
 .helm-deploy:
@@ -40,8 +39,7 @@ stages:
       charts/${CHART_NAME}
       -f charts/${CHART_NAME}/conf/${CI_ENVIRONMENT_SLUG}/${CLUSTER_NAME}.yaml
       -f ${!access_config}
-      --atomic
-      --wait
+      --debug
 
 ################  SIRIUS  ################
 

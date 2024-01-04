@@ -11,7 +11,7 @@ restartPolicy: Always
 image:
   pullPolicy: IfNotPresent
   pullSecret:
-  - gitlab-registry
+  - infra-registry
   repository: registry.sirius.online/infra/exporters/elasticsearch-exporter
   tag: v1.5.0
 

@@ -1,7 +1,0 @@
-### Настройки для кластера CORP
-
-# ID конфигурации Ngenix
-config_ids: "[13084]"
-
-nodeSelector:
-  node-role: monitoring

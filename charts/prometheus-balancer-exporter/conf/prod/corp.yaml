@@ -1,5 +1,0 @@
-# Настройки эндпоинта
-endpoints:
-  pluto:
-    ip: 192.168.88.2
-    node: balancer-pluto

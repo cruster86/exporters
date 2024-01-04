@@ -52,7 +52,7 @@ spec:
       {{- end }}
       {{- end }}
       restartPolicy: {{ .Values.restartPolicy }}
-{{- if ge .Capabilities.KubeVersion.Minor 19 }}
+{{- if ge (int .Capabilities.KubeVersion.Minor) 18 }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}

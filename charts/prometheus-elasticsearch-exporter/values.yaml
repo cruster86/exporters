@@ -13,7 +13,7 @@ image:
   pullSecret:
   - infra-registry
   repository: registry.sirius.online/infra/exporters/elasticsearch-exporter
-  tag: v1.5.0
+  tag: v1.7.0
 
 # The securityContext of the pod.
 podSecurityContext:
@@ -100,7 +100,7 @@ es:
   ## If true, query stats for shards in the cluster.
   shards: true
   ## If true, query stats for snapshots in the cluster.
-  snapshots: true
+  snapshots: false
   ## If true, query stats for cluster settings.
   cluster_settings: false
   ## Timeout for trying to get stats from Elasticsearch.
